@@ -1,3 +1,5 @@
+
+/*
 import javax.imageio.ImageIO; // Para carregar a imagem usando ImageIO.read()
 import java.awt.image.BufferedImage; // Para manipular a imagem como BufferedImage
 import java.io.File;
@@ -7,13 +9,35 @@ import com.googlecode.lanterna.TextColor; // Para trabalhar com as cores no form
 import com.googlecode.lanterna.graphics.TextGraphics; // Para desenhar caracteres na tela
 import com.googlecode.lanterna.screen.Screen; // Caso esteja utilizando um Screen para renderização
 
+*/
 
+package model.game.elements;
 
+public class PlayerCar extends Element {
+    /*
+    private final int width = 10;
+    private final int length = 10;
+    */
+    private int fuelLevel;
 
-public class Player_Car extends Element {
-    private int width;
-    private int length;
+    public PlayerCar(int x, int y, int fuel) {
+        super(x, y);
+        this.fuelLevel = fuel;
+    }
 
+    public void spendFuel() {
+        this.fuelLevel--;
+    }
+
+    public int getFuel() {
+        return fuelLevel;
+    }
+
+    public void setFuel(int fuel) {
+        this.fuelLevel = fuel;
+    }
+
+    /*
     public int getWidth() {
         return width;
     }
@@ -39,5 +63,5 @@ public class Player_Car extends Element {
         }
     }
 
-
+    */
 }
