@@ -3,7 +3,6 @@ package model.game.elements;
 import model.Position;
 
 public class Element {
-
     private Position position;
 
     public Element(int x, int y) {
