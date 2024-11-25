@@ -54,7 +54,7 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawChar(int x, int y, char c, String s) {
-        TextGraphics textGraphics = this.screen.newTextGraphics();
+        TextGraphics textGraphics = getTextGraphics();
         textGraphics.setForegroundColor(TextColor.Factory.fromString(s));
         textGraphics.putString(x, y+1, "" + c);
     }
@@ -94,17 +94,21 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawText(Position position, String text, String color) {
-        TextGraphics textGraphics = screen.newTextGraphics();
+        TextGraphics textGraphics = getTextGraphics();
         textGraphics.setForegroundColor(TextColor.Factory.fromString(color));
         textGraphics.putString(position.getX(), position.getY(), text);
     }
 
     @Override
     public void drawBackground(int x, int y, String color) {
-        TextGraphics textGraphics = screen.newTextGraphics();
+        TextGraphics textGraphics = getTextGraphics();
         textGraphics.setForegroundColor(TextColor.Factory.fromString(color));
         textGraphics.setBackgroundColor(TextColor.Factory.fromString(color));
         textGraphics.putString(x, y+1, " ");
+    }
+
+    public TextGraphics getTextGraphics() {
+        return this.screen.newTextGraphics();
     }
 }
 
