@@ -43,8 +43,8 @@ public class Road {
     public List<RoadLimit> createLimits() {
         List<RoadLimit> limits = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            limits.add(new RoadLimit(i, 0));
-            limits.add(new RoadLimit(i, 19));
+            limits.add(new RoadLimit(0, i));
+            limits.add(new RoadLimit(19, i));
         }
         return limits;
     }

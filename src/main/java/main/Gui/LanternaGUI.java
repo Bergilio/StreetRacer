@@ -1,5 +1,6 @@
 package main.Gui;
 
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
@@ -16,7 +17,8 @@ public class LanternaGUI implements GUI {
     private final Screen screen;
 
     public LanternaGUI(int width, int height) throws IOException {
-        Terminal terminal = new DefaultTerminalFactory().createTerminal();
+        TerminalSize terminalSize = new TerminalSize(width, height);
+        Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize).createTerminal();
         this.screen = createScreen(terminal);
     }
 
@@ -73,9 +75,7 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawLimit(Position position) {
-        drawChar(position.getX(), position.getY(), ' ', "#FFFFFF");
-    }
+    public void drawLimit(Position position) { drawBackground(position.getX(), position.getY(), "#FFFFFF"); }
 
     @Override
     public void clear() {
@@ -97,6 +97,14 @@ public class LanternaGUI implements GUI {
         TextGraphics textGraphics = screen.newTextGraphics();
         textGraphics.setForegroundColor(TextColor.Factory.fromString(color));
         textGraphics.putString(position.getX(), position.getY(), text);
+    }
+
+    @Override
+    public void drawBackground(int x, int y, String color) {
+        TextGraphics textGraphics = screen.newTextGraphics();
+        textGraphics.setForegroundColor(TextColor.Factory.fromString(color));
+        textGraphics.setBackgroundColor(TextColor.Factory.fromString(color));
+        textGraphics.putString(x, y+1, " ");
     }
 }
 

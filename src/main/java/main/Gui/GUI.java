@@ -24,4 +24,6 @@ public interface GUI {
     void refresh() throws IOException;
 
     void drawText(Position position, String text, String color);
+
+    void drawBackground(int x, int y, String color);
 }
