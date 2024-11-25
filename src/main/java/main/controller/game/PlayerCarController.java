@@ -2,9 +2,10 @@ package main.controller.game;
 
 import main.Game;
 import main.Gui.ACTION;
-import main.controller.Controller;
+import main.State.MenuState;
 import main.model.Position;
 import main.model.game.road.Road;
+import main.model.menu.Menu;
 
 public class PlayerCarController extends GameController {
 
@@ -14,19 +15,24 @@ public class PlayerCarController extends GameController {
 
     @Override
     public void update(Game game, ACTION action, long time) {
-        if (action == ACTION.RIGHT) moveRight();
-        if (action == ACTION.LEFT) moveLeft();
+        if (action == ACTION.RIGHT) moveRight(game);
+        if (action == ACTION.LEFT) moveLeft(game);
     }
 
-    public void moveLeft() {
-        movePlayerCar(getModel().getPlayerCar().getPosition().getLeft());
+    public void moveLeft(Game game) {
+        movePlayerCar(getModel().getPlayerCar().getPosition().getLeft(), game);
     }
 
-    public void moveRight() {
-        movePlayerCar(getModel().getPlayerCar().getPosition().getRight());
+    public void moveRight(Game game) {
+        movePlayerCar(getModel().getPlayerCar().getPosition().getRight(), game);
     }
 
-    public void movePlayerCar(Position position) {
-        if ()
+    public void movePlayerCar(Position position, Game game) {
+        if (!getModel().isLimit(position)) {
+            getModel().getPlayerCar().setPosition(position);
+            if (getModel().isObstacle(position)) {
+                game.setState(new MenuState(new Menu()));
+            }
+        }
     }
 }

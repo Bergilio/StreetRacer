@@ -33,4 +33,8 @@ public class Position {
     public Position getRight() {
         return new Position(x + 1, y);
     }
+
+    public Position getDown() {
+        return new Position(0, y - 1);
+    }
 }
