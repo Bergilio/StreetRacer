@@ -26,12 +26,15 @@ No nosso projeto iremos fazer um jogo 2D sobre carros onde o jogador controla um
 ## GAME SCREENSHOTS AND MOCKUPS
 
 CarPlayer:
-![car1.png](src/main/resources/Images/car1.png)
+
+![gas.png](src/main/resources/Images/image2.png)
 
 
 Fuel:
-![gas.png](src/main/resources/Images/gas.png)
+
+![gas.png](src/main/resources/Images/image.png)
 
 Mockup:
+
 ![mockup.png](src/main/resources/Images/mockup.png)
 
