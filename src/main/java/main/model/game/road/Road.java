@@ -8,6 +8,7 @@ import main.model.game.elements.collidable.Obstacle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Road {
     private int width;
@@ -19,30 +20,79 @@ public class Road {
     private List<Fuel> fuels;
     private List<RoadLimit> limits;
 
+    private Random random;
+
     public Road(int width, int height) {
         this.width = width;
         this.height = height;
 
+        this.random = new Random();
+
         this.playerCar = new PlayerCar(10, 16, 20);
 
-        this.obstacles = createObstacles();
-        this.fuels = createFuels();
+        this.obstacles = createObstacles(10);
+        this.fuels = createFuels(4);
         this.limits = createLimits();
     }
 
-    public List<Obstacle> createObstacles() {
+    public List<Obstacle> createObstacles(int numberOfObstacles) {
         List<Obstacle> obstacles = new ArrayList<>();
-        obstacles.add(new Obstacle(3, 2));
-        obstacles.add(new Obstacle(10, 14));
-        obstacles.add(new Obstacle(3, 6));
+        int properDistribution = 14;
+
+        for (int i = 0; i < numberOfObstacles; i++) {
+            int x = random.nextInt(width - 2) + 1;
+            int y = properDistribution - random.nextInt(1);
+
+            boolean overlap = false;
+            for (Obstacle obstacle : obstacles) {
+                if (obstacle.getPosition().getX() == x && obstacle.getPosition().getY() == y) {
+                    overlap = true;
+                    break;
+                }
+            }
+
+            if (!overlap) {
+                obstacles.add(new Obstacle(x, y));
+                properDistribution -= 2;
+            } else {
+                i--;
+            }
+        }
+
         return obstacles;
     }
 
-    public List<Fuel> createFuels() {
+    public List<Fuel> createFuels(int numberOfFuels) {
         List<Fuel> fuels = new ArrayList<>();
-        fuels.add(new Fuel(3, 14));
-        fuels.add(new Fuel(17, 6));
-        fuels.add(new Fuel(17, 2));
+        int properDistribution = 14;
+
+        for (int i = 0; i < numberOfFuels; i++) {
+            int x = random.nextInt(width - 2) + 1;
+            int y = properDistribution - random.nextInt(1);
+
+            boolean overlap = false;
+            for (Fuel fuel : fuels) {
+                if (fuel.getPosition().getX() == x && fuel.getPosition().getY() == y) {
+                    overlap = true;
+                    break;
+                }
+            }
+
+            for (Obstacle obstacle: this.obstacles) {
+                if (obstacle.getPosition().getX() == x && obstacle.getPosition().getY() == y) {
+                    overlap = true;
+                    break;
+                }
+            }
+
+            if (!overlap) {
+                fuels.add(new Fuel(x, y));
+                properDistribution -= 2;
+            } else {
+                i--;
+            }
+        }
+
         return fuels;
     }
 

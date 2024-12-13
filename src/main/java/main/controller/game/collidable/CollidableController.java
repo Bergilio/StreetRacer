@@ -5,7 +5,9 @@ import main.Gui.ACTION;
 import main.controller.game.GameController;
 import main.model.game.road.Road;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public abstract class CollidableController<T> extends GameController {
     private long last;
@@ -29,6 +31,7 @@ public abstract class CollidableController<T> extends GameController {
 
     public void processElements(Game game) {
         Iterator<T> iterator = getElementsIterator();
+        List<T> newElements = new ArrayList<>();
 
         while (iterator.hasNext()) {
             T element = iterator.next();
@@ -36,8 +39,11 @@ public abstract class CollidableController<T> extends GameController {
 
             if (shouldRemoveElement(element)) {
                 iterator.remove();
+                newElements.add(generateElement());
             }
         }
+
+        addElements(newElements);
     }
 
     protected abstract Iterator<T> getElementsIterator();
@@ -45,5 +51,9 @@ public abstract class CollidableController<T> extends GameController {
     protected abstract void updateElement(Game game, T element);
 
     protected abstract boolean shouldRemoveElement(T element);
+
+    protected abstract T generateElement();
+
+    protected abstract void addElements(List<T> elements);
 
 }
