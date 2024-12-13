@@ -15,8 +15,20 @@ public class MenuViewer extends Viewer<Menu> {
     protected void drawElement(GUI gui) {
         gui.drawText(new Position(7, 5), "Menu", "#FF00FF");
 
+        boolean flag = false;
+
         for (int i = 0; i < getModel().getOptionsSize(); i++) {
-            gui.drawText(new Position(3, 7 + i), getModel().getOption(i), "#FF00FF");
+            if (getModel().getCurrentSelection() == i) {
+                gui.drawText(new Position(4, 7 + i), "<", "#FF00FF");
+                flag = true;
+            }
+
+            gui.drawText(new Position(5, 7 + i), getModel().getOption(i), "#FF00FF");
+
+            if (flag) {
+                flag = false;
+                gui.drawText(new Position(5 + getModel().getOption(i).length(), 7 + i), ">", "#FF00FF");
+            }
         }
     }
 

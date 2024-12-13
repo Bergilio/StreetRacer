@@ -35,6 +35,6 @@ public class Position {
     }
 
     public Position getDown() {
-        return new Position(0, y + 1);
+        return new Position(x, y + 1);
     }
 }

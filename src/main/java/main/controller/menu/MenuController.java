@@ -1,5 +1,6 @@
 package main.controller.menu;
 
+import com.googlecode.lanterna.terminal.swing.TerminalScrollController;
 import main.Game;
 import main.State.GameState;
 import main.controller.Controller;
@@ -17,15 +18,29 @@ public class MenuController extends Controller<Menu> {
 
     @Override
     public void update(Game game, ACTION action, long time) throws IOException {
+        int curSelect = getModel().getCurrentSelection();
+
         switch (action) {
-            case ONE:
-                game.setState(new GameState(new Road(20, 20)));
+            case UP:
+                if (curSelect == 0) curSelect = 2;
+                else if (curSelect > 0) curSelect--;
+                getModel().setCurrentSelection(curSelect);
                 break;
-            case TWO:
+            case DOWN:
+                if (curSelect == 2) curSelect = 0;
+                else if (curSelect < 2) curSelect++;
+                getModel().setCurrentSelection(curSelect);
                 break;
-            case THREE:
-                game.setState(null);
-                break;
+            case SELECT:
+                if (curSelect == 0) {
+                    game.setState(new GameState(new Road(20, 20)));
+                    break;
+                }else if (curSelect == 1) {
+                    break;
+                } else {
+                    game.setState(null);
+                    break;
+                }
         }
     }
 }

@@ -1,6 +1,8 @@
 package main.Gui;
 
 public enum ACTION {
+    UP,
+    DOWN,
     LEFT,
     RIGHT,
 
@@ -8,6 +10,7 @@ public enum ACTION {
     TWO,
     THREE,
 
+    SELECT,
     NONE,
     QUIT
 }

@@ -5,9 +5,11 @@ import java.util.List;
 
 public class Menu {
     private final List<String> options;
+    private int currentSelection = 0;
 
     public Menu() {
-        this.options = Arrays.asList("[1] Start Game", "[2] Controls", "[3] Quit");
+
+        this.options = Arrays.asList("Start Game", "Controls", "Quit");
     }
 
     public int getOptionsSize() {
@@ -16,5 +18,13 @@ public class Menu {
 
     public String getOption(int index) {
         return this.options.get(index);
+    }
+
+    public int getCurrentSelection() {
+        return this.currentSelection;
+    }
+
+    public void setCurrentSelection(int currentSelection) {
+        this.currentSelection = currentSelection;
     }
 }

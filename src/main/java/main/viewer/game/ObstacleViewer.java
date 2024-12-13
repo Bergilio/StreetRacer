@@ -1,7 +1,7 @@
 package main.viewer.game;
 
 import main.Gui.GUI;
-import main.model.game.elements.Obstacle;
+import main.model.game.elements.collidable.Obstacle;
 
 
 public class ObstacleViewer implements ElementViewer<Obstacle> {

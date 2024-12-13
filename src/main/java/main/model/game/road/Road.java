@@ -1,10 +1,10 @@
 package main.model.game.road;
 
 import main.model.Position;
-import main.model.game.elements.Fuel;
-import main.model.game.elements.Obstacle;
-import main.model.game.elements.PlayerCar;
-import main.model.game.elements.RoadLimit;
+import main.model.game.elements.*;
+import main.model.game.elements.collidable.Collidable;
+import main.model.game.elements.collidable.Fuel;
+import main.model.game.elements.collidable.Obstacle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,20 +13,26 @@ public class Road {
     private int width;
     private int height;
 
-    private PlayerCar playerCar = new PlayerCar(10, 18, 20);
+    private PlayerCar playerCar;
 
-    private List<Obstacle> obstacles = createObstacles();
-    private List<Fuel> fuels = createFuels();
-    private List<RoadLimit> limits = createLimits();
+    private List<Obstacle> obstacles;
+    private List<Fuel> fuels;
+    private List<RoadLimit> limits;
 
     public Road(int width, int height) {
         this.width = width;
         this.height = height;
+
+        this.playerCar = new PlayerCar(10, 16, 20);
+
+        this.obstacles = createObstacles();
+        this.fuels = createFuels();
+        this.limits = createLimits();
     }
 
     public List<Obstacle> createObstacles() {
         List<Obstacle> obstacles = new ArrayList<>();
-        obstacles.add(new Obstacle(3, 19));
+        obstacles.add(new Obstacle(3, 2));
         obstacles.add(new Obstacle(10, 14));
         obstacles.add(new Obstacle(3, 6));
         return obstacles;
@@ -34,9 +40,9 @@ public class Road {
 
     public List<Fuel> createFuels() {
         List<Fuel> fuels = new ArrayList<>();
-        fuels.add(new Fuel(17, 19));
         fuels.add(new Fuel(3, 14));
         fuels.add(new Fuel(17, 6));
+        fuels.add(new Fuel(17, 2));
         return fuels;
     }
 
@@ -58,14 +64,26 @@ public class Road {
         return false;
     }
 
-    public boolean isObstacle(Position position) {
-        for (Obstacle obstacle : obstacles) {
-            if (obstacle.getPosition().equals(position)) {
+/*
+    public boolean isCollidable(Position position) {
+        for (Collidable collidable : collidables) {
+            if (collidable.getPosition().equals(position)) {
                 return true;
             }
         }
         return false;
     }
+
+*/
+
+    public List<Collidable> getAllCollidables() {
+        List<Collidable> allCollidables = new ArrayList<>();
+        allCollidables.addAll(fuels);
+        allCollidables.addAll(obstacles);
+        return allCollidables;
+    }
+
+
 
     public int getWidth() {
         return width;
