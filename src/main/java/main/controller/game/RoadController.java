@@ -5,7 +5,6 @@ import main.Gui.ACTION;
 import main.State.MenuState;
 import main.controller.game.collidable.FuelController;
 import main.controller.game.collidable.ObstacleController;
-import main.model.game.elements.collidable.Obstacle;
 import main.model.game.road.Road;
 import main.model.menu.Menu;
 
@@ -28,12 +27,10 @@ public class RoadController extends GameController {
     public void update(Game game, ACTION action, long time) throws IOException {
         if (checkGameOver(action)) {
             game.setState(new MenuState(new Menu()));
-        }
-        else {
+        } else {
             this.playerCarController.update(game, action, time);
             this.obstacleController.update(game, action, time);
             this.fuelController.update(game, action, time);
-
         }
     }
 

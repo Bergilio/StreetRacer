@@ -30,14 +30,14 @@ public class Road {
 
         this.playerCar = new PlayerCar(10, 16, 20);
 
-        this.obstacles = createObstacles(10);
+        this.obstacles = createObstacles(6);
         this.fuels = createFuels(4);
         this.limits = createLimits();
     }
 
     public List<Obstacle> createObstacles(int numberOfObstacles) {
         List<Obstacle> obstacles = new ArrayList<>();
-        int properDistribution = 14;
+        int properDistribution = 8;
 
         for (int i = 0; i < numberOfObstacles; i++) {
             int x = random.nextInt(width - 2) + 1;
@@ -64,7 +64,7 @@ public class Road {
 
     public List<Fuel> createFuels(int numberOfFuels) {
         List<Fuel> fuels = new ArrayList<>();
-        int properDistribution = 14;
+        int properDistribution = 6;
 
         for (int i = 0; i < numberOfFuels; i++) {
             int x = random.nextInt(width - 2) + 1;
@@ -114,8 +114,8 @@ public class Road {
         return false;
     }
 
-/*
-    public boolean isCollidable(Position position) {
+
+    public boolean isCollidable(Position position, List<Collidable> collidables) {
         for (Collidable collidable : collidables) {
             if (collidable.getPosition().equals(position)) {
                 return true;
@@ -124,15 +124,14 @@ public class Road {
         return false;
     }
 
-*/
-
+/*
     public List<Collidable> getAllCollidables() {
         List<Collidable> allCollidables = new ArrayList<>();
         allCollidables.addAll(fuels);
         allCollidables.addAll(obstacles);
         return allCollidables;
     }
-
+*/
 
 
     public int getWidth() {

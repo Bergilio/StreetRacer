@@ -3,13 +3,16 @@ package main.controller.game.collidable;
 import main.Game;
 import main.Gui.ACTION;
 import main.controller.game.GameController;
+import main.model.game.elements.collidable.Collidable;
+import main.model.game.elements.collidable.Fuel;
+import main.model.game.elements.collidable.Obstacle;
 import main.model.game.road.Road;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class CollidableController<T> extends GameController {
+public abstract class CollidableController<T extends Collidable> extends GameController {
     private long last;
     private long speedDecider;
 
@@ -25,7 +28,9 @@ public abstract class CollidableController<T> extends GameController {
         if (time - last > speedDecider) {
             processElements(game);
             last = time;
-            speedDecider -= 20;
+            if (speedDecider > 100) {
+                speedDecider -= 20;
+            }
         }
     }
 
@@ -39,12 +44,37 @@ public abstract class CollidableController<T> extends GameController {
 
             if (shouldRemoveElement(element)) {
                 iterator.remove();
-                newElements.add(generateElement());
+                newElements.add(generateValidElement());
+            }
+        }
+        addElements(newElements);
+    }
+
+    private T generateValidElement() {
+        while (true) {
+            T newElement = generateElement();
+            if (isPositionValid(newElement)) {
+                return newElement;
+            }
+        }
+    }
+
+    private boolean isPositionValid(T element) {
+        for (Obstacle obstacle : getModel().getObstacles()) {
+            if (obstacle.getPosition().equals(element.getPosition())) {
+                return false;
             }
         }
 
-        addElements(newElements);
+        for (Fuel fuel : getModel().getFuels()) {
+            if (fuel.getPosition().equals(element.getPosition())) {
+                return false;
+            }
+        }
+
+        return true;
     }
+
 
     protected abstract Iterator<T> getElementsIterator();
 
