@@ -20,8 +20,8 @@ public class PlayerCar extends Element {
     */
     private int fuelLevel;
 
-    public PlayerCar(int x, int y, int fuel) {
-        super(x, y);
+    public PlayerCar(int x, int y, int fuel, int w, int h) {
+        super(x, y, w, h);
         this.fuelLevel = fuel;
     }
 

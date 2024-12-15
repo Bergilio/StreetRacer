@@ -1,6 +1,7 @@
 package main.controller.game.collidable;
 
 import main.Game;
+import main.config.GameConfig;
 import main.model.Position;
 import main.model.game.elements.collidable.Fuel;
 import main.model.game.road.Road;
@@ -24,14 +25,15 @@ public class FuelController extends CollidableController<Fuel> {
     protected void updateElement(Game game, Fuel fuel) {
         moveFuel(fuel, fuel.getPosition().getDown());
 
-        if (fuel.getPosition().equals(getModel().getPlayerCar().getPosition())) {
+        if (fuel.collides(getModel().getPlayerCar().getPosition(), getModel().getPlayerCar().getWidth(), getModel().getPlayerCar().getHeight())) {
             increaseFuel();
         }
     }
 
     @Override
     protected boolean shouldRemoveElement(Fuel fuel) {
-        return fuel.getPosition().getY() >= 20 || fuel.getPosition().equals(getModel().getPlayerCar().getPosition());
+        return fuel.getPosition().getY() >= GameConfig.ROAD_HEIGHT ||
+        fuel.collides(getModel().getPlayerCar().getPosition(), getModel().getPlayerCar().getWidth(), getModel().getPlayerCar().getHeight());
     }
 
     @Override
@@ -39,7 +41,7 @@ public class FuelController extends CollidableController<Fuel> {
         Random random = new Random();
         int x = random.nextInt(getModel().getWidth() - 2) + 1;
         int y = 0;
-        return new Fuel(x, y);
+        return new Fuel(x, y, GameConfig.FUEL_WIDTH, GameConfig.FUEL_HEIGHT);
     }
 
     @Override
@@ -54,7 +56,7 @@ public class FuelController extends CollidableController<Fuel> {
     }
 
     private void increaseFuel() {
-        getModel().getPlayerCar().setFuel(getModel().getPlayerCar().getFuel() + 5);
+        getModel().getPlayerCar().setFuel(getModel().getPlayerCar().getFuel() + GameConfig.FUEL_ADITION);
     }
 
 

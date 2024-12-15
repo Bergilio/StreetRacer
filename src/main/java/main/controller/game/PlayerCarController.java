@@ -37,7 +37,7 @@ public class PlayerCarController extends GameController {
     }
 
     public void spendFuel(Game game) {
-        getModel().getPlayerCar().setFuel(getModel().getPlayerCar().getFuel() - 1);
+        getModel().getPlayerCar().spendFuel();
     }
 
     public void movePlayerCar(Position position, Game game) {

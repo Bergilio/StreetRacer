@@ -3,16 +3,18 @@ package main;
 import main.Gui.LanternaGUI;
 import main.State.MenuState;
 import main.State.State;
+import main.config.GameConfig;
 import main.model.menu.Menu;
 
 import java.io.IOException;
+
 
 public class Game {
     private final LanternaGUI gui;
     private State state;
 
     private Game() throws IOException {
-        this.gui = new LanternaGUI(20, 20);
+        this.gui = new LanternaGUI(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
         this.state = new MenuState(new Menu());
     }
 

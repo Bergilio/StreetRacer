@@ -31,6 +31,7 @@ public abstract class CollidableController<T extends Collidable> extends GameCon
             if (speedDecider > 100) {
                 speedDecider -= 20;
             }
+
         }
     }
 
@@ -44,22 +45,22 @@ public abstract class CollidableController<T extends Collidable> extends GameCon
 
             if (shouldRemoveElement(element)) {
                 iterator.remove();
-                newElements.add(generateValidElement());
+                newElements.add(generateValidElement(newElements));
             }
         }
         addElements(newElements);
     }
 
-    private T generateValidElement() {
+    private T generateValidElement(List<T> newElements) {
         while (true) {
             T newElement = generateElement();
-            if (isPositionValid(newElement)) {
+            if (isPositionValid(newElement, newElements)) {
                 return newElement;
             }
         }
     }
 
-    private boolean isPositionValid(T element) {
+    private boolean isPositionValid(T element, List<T> newElements) {
         for (Obstacle obstacle : getModel().getObstacles()) {
             if (obstacle.getPosition().equals(element.getPosition())) {
                 return false;
@@ -68,6 +69,12 @@ public abstract class CollidableController<T extends Collidable> extends GameCon
 
         for (Fuel fuel : getModel().getFuels()) {
             if (fuel.getPosition().equals(element.getPosition())) {
+                return false;
+            }
+        }
+
+        for (T newElement : newElements) {
+            if (newElement.getPosition().equals(element.getPosition())) {
                 return false;
             }
         }

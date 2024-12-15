@@ -1,14 +1,16 @@
 package main.model.game.road;
 
+import main.config.GameConfig;
 import main.model.Position;
 import main.model.game.elements.*;
 import main.model.game.elements.collidable.Collidable;
 import main.model.game.elements.collidable.Fuel;
 import main.model.game.elements.collidable.Obstacle;
+import main.model.game.road.creator.FuelCreator;
+import main.model.game.road.creator.ObstacleCreator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Road {
     private int width;
@@ -20,87 +22,35 @@ public class Road {
     private List<Fuel> fuels;
     private List<RoadLimit> limits;
 
-    private Random random;
 
     public Road(int width, int height) {
         this.width = width;
         this.height = height;
 
-        this.random = new Random();
+        this.playerCar = new PlayerCar(GameConfig.PLAYER_START_X, GameConfig.PLAYER_START_Y,
+                                       GameConfig.PLAYER_START_FUEL, GameConfig.CAR_WIDTH,
+                                       GameConfig.CAR_HEIGHT);
 
-        this.playerCar = new PlayerCar(10, 16, 20);
-
-        this.obstacles = createObstacles(6);
-        this.fuels = createFuels(4);
+        this.obstacles = createObstacles();
+        this.fuels = createFuels();
         this.limits = createLimits();
     }
 
-    public List<Obstacle> createObstacles(int numberOfObstacles) {
-        List<Obstacle> obstacles = new ArrayList<>();
-        int properDistribution = 8;
-
-        for (int i = 0; i < numberOfObstacles; i++) {
-            int x = random.nextInt(width - 2) + 1;
-            int y = properDistribution - random.nextInt(1);
-
-            boolean overlap = false;
-            for (Obstacle obstacle : obstacles) {
-                if (obstacle.getPosition().getX() == x && obstacle.getPosition().getY() == y) {
-                    overlap = true;
-                    break;
-                }
-            }
-
-            if (!overlap) {
-                obstacles.add(new Obstacle(x, y));
-                properDistribution -= 2;
-            } else {
-                i--;
-            }
-        }
-
-        return obstacles;
+    public List<Obstacle> createObstacles() {
+        ObstacleCreator obstacleCreator = new ObstacleCreator(this.width, this.height, this.playerCar);
+        return obstacleCreator.createElements();
     }
 
-    public List<Fuel> createFuels(int numberOfFuels) {
-        List<Fuel> fuels = new ArrayList<>();
-        int properDistribution = 6;
-
-        for (int i = 0; i < numberOfFuels; i++) {
-            int x = random.nextInt(width - 2) + 1;
-            int y = properDistribution - random.nextInt(1);
-
-            boolean overlap = false;
-            for (Fuel fuel : fuels) {
-                if (fuel.getPosition().getX() == x && fuel.getPosition().getY() == y) {
-                    overlap = true;
-                    break;
-                }
-            }
-
-            for (Obstacle obstacle: this.obstacles) {
-                if (obstacle.getPosition().getX() == x && obstacle.getPosition().getY() == y) {
-                    overlap = true;
-                    break;
-                }
-            }
-
-            if (!overlap) {
-                fuels.add(new Fuel(x, y));
-                properDistribution -= 2;
-            } else {
-                i--;
-            }
-        }
-
-        return fuels;
+    public List<Fuel> createFuels() {
+        FuelCreator fuelCreator = new FuelCreator(this.width, this.height, this.playerCar, this.obstacles);
+        return fuelCreator.createElements();
     }
 
     public List<RoadLimit> createLimits() {
         List<RoadLimit> limits = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < this.height; i++) {
             limits.add(new RoadLimit(0, i));
-            limits.add(new RoadLimit(19, i));
+            limits.add(new RoadLimit(this.width - 1, i));
         }
         return limits;
     }
@@ -123,15 +73,6 @@ public class Road {
         }
         return false;
     }
-
-/*
-    public List<Collidable> getAllCollidables() {
-        List<Collidable> allCollidables = new ArrayList<>();
-        allCollidables.addAll(fuels);
-        allCollidables.addAll(obstacles);
-        return allCollidables;
-    }
-*/
 
 
     public int getWidth() {

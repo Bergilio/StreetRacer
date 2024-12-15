@@ -54,43 +54,30 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawChar(int x, int y, char c, String s) {
-        TextGraphics textGraphics = getTextGraphics();
-        textGraphics.setForegroundColor(TextColor.Factory.fromString(s));
-        textGraphics.putString(x, y+1, "" + c);
+    public void drawPlayerCar(Position position, int width, int height) {
+        drawBigElement(position.getX(), position.getY(), width, height, "#FFD700");
     }
 
     @Override
-    public void drawPlayerCar(Position position) {
-        drawChar(position.getX(), position.getY(), 'C', "#FFD700");
+    public void drawObstacle(Position position, int width, int height) {
+        drawBigElement(position.getX(), position.getY(), width, height, "#0000FF");
     }
 
     @Override
-    public void drawObstacle(Position position) {
-        drawChar(position.getX(), position.getY(), 'O', "#0000FF");
-    }
-
-    @Override
-    public void drawFuel(Position position) {
-        drawChar(position.getX(), position.getY(), 'F', "#CC0000");
+    public void drawFuel(Position position, int width, int height) {
+        drawBigElement(position.getX(), position.getY(), width, height, "#CC0000");
     }
 
     @Override
     public void drawLimit(Position position) { drawBackground(position.getX(), position.getY(), "#FFFFFF"); }
 
     @Override
-    public void clear() {
-        screen.clear();
-    }
-
-    @Override
-    public void refresh() throws IOException {
-        screen.refresh();
-    }
-
-    @Override
-    public void close() throws IOException {
-        screen.close();
+    public void drawBigElement(int x, int y, int w, int h, String color) {
+        for (int i = y; i < y + h; i++) {
+            for (int j = x; j < x + w; j++) {
+                drawBackground(j, i, color);
+            }
+        }
     }
 
     @Override
@@ -106,6 +93,21 @@ public class LanternaGUI implements GUI {
         textGraphics.setForegroundColor(TextColor.Factory.fromString(color));
         textGraphics.setBackgroundColor(TextColor.Factory.fromString(color));
         textGraphics.putString(x, y+1, " ");
+    }
+
+    @Override
+    public void clear() {
+        screen.clear();
+    }
+
+    @Override
+    public void refresh() throws IOException {
+        screen.refresh();
+    }
+
+    @Override
+    public void close() throws IOException {
+        screen.close();
     }
 
     public TextGraphics getTextGraphics() {

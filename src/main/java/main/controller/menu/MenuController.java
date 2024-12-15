@@ -3,6 +3,7 @@ package main.controller.menu;
 import com.googlecode.lanterna.terminal.swing.TerminalScrollController;
 import main.Game;
 import main.State.GameState;
+import main.config.GameConfig;
 import main.controller.Controller;
 import main.model.game.road.Road;
 import main.model.menu.Menu;
@@ -33,7 +34,7 @@ public class MenuController extends Controller<Menu> {
                 break;
             case SELECT:
                 if (curSelect == 0) {
-                    game.setState(new GameState(new Road(20, 20)));
+                    game.setState(new GameState(new Road(GameConfig.ROAD_WIDTH, GameConfig.ROAD_HEIGHT)));
                     break;
                 }else if (curSelect == 1) {
                     break;
