@@ -22,12 +22,12 @@ public abstract class ElementCreator<T extends Collidable> {
 
     public List<T> createElements() {
         List<T> elements = new ArrayList<>();
-        int divisionOfRoad = this.roadHeight / GameConfig.CAR_HEIGHT;
+        int divisionOfRoad = this.roadHeight / (GameConfig.CAR_HEIGHT * 2);
         int positionReference = 0;
 
         for (int i = 0; i < divisionOfRoad; i++) {
             elements.addAll(generateElementsForDivision(positionReference));
-            positionReference += GameConfig.CAR_HEIGHT;
+            positionReference += GameConfig.CAR_HEIGHT * 2;
         }
 
         return elements;

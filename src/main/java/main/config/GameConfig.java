@@ -1,7 +1,7 @@
 package main.config;
 
 public class GameConfig {
-    public static final int SCREEN_WIDTH = 100;
+    public static final int SCREEN_WIDTH = 50;
     public static final int SCREEN_HEIGHT = 50;
 
     public static final int ROAD_WIDTH = 50;

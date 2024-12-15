@@ -42,7 +42,7 @@ public class ObstacleCreator extends ElementCreator<Obstacle> {
 
     @Override
     protected boolean isPositionValid(Position position, int width, int height, List<Obstacle> newElements) {
-        if (checkCollision(this.playerCar, position, width, height)) {
+        if (checkCollision(this.playerCar, position, width, height + GameConfig.CAR_HEIGHT / 2)) {
             return false;
         }
 
