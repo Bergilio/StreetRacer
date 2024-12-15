@@ -34,19 +34,7 @@ public abstract class ElementCreator<T extends Collidable> {
     }
 
 
-    // Will have to make it abstract and define it in each class that extends as the logic differs slightly
-    protected boolean isPositionValid(Position position, int width, int height, List<? extends Collidable> collidables) {
-        if (checkCollision(this.playerCar, position, width, height)) {
-            return false;
-        }
-
-        for (Collidable collidable : collidables) {
-            if (checkCollision(collidable, position, width, height)) {
-                return false;
-            }
-        }
-        return true;
-    }
+    protected abstract boolean isPositionValid(Position position, int width, int height, List<T> collidables);
 
     protected abstract List<T> generateElementsForDivision(int positionReference);
 

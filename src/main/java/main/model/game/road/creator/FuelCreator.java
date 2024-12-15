@@ -43,6 +43,27 @@ public class FuelCreator extends ElementCreator<Fuel> {
     }
 
     @Override
+    protected boolean isPositionValid(Position position, int width, int height, List<Fuel> newElements) {
+        if (checkCollision(this.playerCar, position, width, height)) {
+            return false;
+        }
+
+        for (Fuel fuel : newElements) {
+            if (checkCollision(fuel, position, width, height)) {
+                return false;
+            }
+        }
+
+        for (Obstacle obstacle : this.obstacles) {
+            if (checkCollision(obstacle, position, width, height)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
     protected boolean checkCollision(Element element, Position position, int w, int h) {
         return element.collides(position, w, h);
     }

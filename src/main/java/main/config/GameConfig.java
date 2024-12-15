@@ -19,7 +19,7 @@ public class GameConfig {
     public static final int FUEL_HEIGHT = 1;
     public static final int FUEL_ADITION = 5;
 
-    public static final int NUMBER_OF_OBSTACLES_PER_DIVISION = 2;
+    public static final int NUMBER_OF_OBSTACLES_PER_DIVISION = 1;
     public static final int NUMBER_OF_FUELS_PER_DIVISION = 1;
 
 }

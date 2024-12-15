@@ -62,19 +62,19 @@ public abstract class CollidableController<T extends Collidable> extends GameCon
 
     private boolean isPositionValid(T element, List<T> newElements) {
         for (Obstacle obstacle : getModel().getObstacles()) {
-            if (obstacle.getPosition().equals(element.getPosition())) {
+            if (obstacle.collides(element.getPosition(), element.getWidth(), element.getHeight())) {
                 return false;
             }
         }
 
         for (Fuel fuel : getModel().getFuels()) {
-            if (fuel.getPosition().equals(element.getPosition())) {
+            if (fuel.collides(element.getPosition(), element.getWidth(), element.getHeight())) {
                 return false;
             }
         }
 
         for (T newElement : newElements) {
-            if (newElement.getPosition().equals(element.getPosition())) {
+            if (newElement.collides(element.getPosition(), element.getWidth(), element.getHeight())) {
                 return false;
             }
         }

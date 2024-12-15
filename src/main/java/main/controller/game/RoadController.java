@@ -32,6 +32,7 @@ public class RoadController extends GameController {
             this.obstacleController.update(game, action, time);
             this.fuelController.update(game, action, time);
         }
+
     }
 
     private boolean checkGameOver(ACTION action) {

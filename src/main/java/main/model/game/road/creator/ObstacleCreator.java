@@ -4,6 +4,7 @@ import main.config.GameConfig;
 import main.model.Position;
 import main.model.game.elements.Element;
 import main.model.game.elements.PlayerCar;
+import main.model.game.elements.collidable.Collidable;
 import main.model.game.elements.collidable.Obstacle;
 
 import java.util.ArrayList;
@@ -37,6 +38,20 @@ public class ObstacleCreator extends ElementCreator<Obstacle> {
         }
 
         return newElements;
+    }
+
+    @Override
+    protected boolean isPositionValid(Position position, int width, int height, List<Obstacle> newElements) {
+        if (checkCollision(this.playerCar, position, width, height)) {
+            return false;
+        }
+
+        for (Obstacle obstacle : newElements) {
+            if (checkCollision(obstacle, position, width, height)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
