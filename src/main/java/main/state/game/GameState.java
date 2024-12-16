@@ -1,8 +1,9 @@
-package main.State;
+package main.state.game;
 
 import main.controller.Controller;
 import main.controller.game.RoadController;
 import main.model.game.road.Road;
+import main.state.State;
 import main.viewer.Viewer;
 import main.viewer.game.GameViewer;
 

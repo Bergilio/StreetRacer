@@ -1,4 +1,4 @@
-package main.Gui;
+package main.gui;
 import main.model.Position;
 
 import java.io.IOException;

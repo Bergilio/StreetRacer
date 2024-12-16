@@ -1,6 +1,6 @@
 package main.viewer.game;
 
-import main.Gui.GUI;
+import main.gui.GUI;
 import main.model.game.elements.collidable.Fuel;
 
 public class FuelViewer implements ElementViewer<Fuel> {

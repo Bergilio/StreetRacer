@@ -1,8 +1,8 @@
-package main.State;
+package main.state;
 
 import main.Game;
-import main.Gui.ACTION;
-import main.Gui.GUI;
+import main.gui.ACTION;
+import main.gui.GUI;
 import main.controller.Controller;
 import main.viewer.Viewer;
 

@@ -1,5 +1,6 @@
 package main.model.game.road.creator;
 
+import main.Game;
 import main.config.GameConfig;
 import main.model.Position;
 import main.model.game.elements.Element;
@@ -24,7 +25,7 @@ public class ObstacleCreator extends ElementCreator<Obstacle> {
         List<Obstacle> newElements = new ArrayList<>();
 
         for (int i = 0; i < GameConfig.NUMBER_OF_OBSTACLES_PER_DIVISION; i++) {
-            int x = random.nextInt(this.roadWidth - 2) + 1;
+            int x = random.nextInt(this.roadWidth - 1 - GameConfig.CAR_WIDTH) + 1;
             int y = positionReference;
             Obstacle obstacle = new Obstacle(x, y, GameConfig.CAR_WIDTH, GameConfig.CAR_HEIGHT);
 

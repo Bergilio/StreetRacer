@@ -2,7 +2,7 @@ package main.controller;
 
 import java.io.IOException;
 import main.Game;
-import main.Gui.ACTION;
+import main.gui.ACTION;
 
 
 

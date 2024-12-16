@@ -1,8 +1,8 @@
 package main;
 
-import main.Gui.LanternaGUI;
-import main.State.MenuState;
-import main.State.State;
+import main.gui.LanternaGUI;
+import main.state.menu.MenuState;
+import main.state.State;
 import main.config.GameConfig;
 import main.model.menu.Menu;
 

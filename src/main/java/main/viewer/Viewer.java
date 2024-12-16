@@ -1,6 +1,6 @@
 package main.viewer;
 
-import main.Gui.GUI;
+import main.gui.GUI;
 
 import java.io.IOException;
 

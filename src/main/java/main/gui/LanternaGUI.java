@@ -1,4 +1,4 @@
-package main.Gui;
+package main.gui;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -49,9 +49,11 @@ public class LanternaGUI implements GUI {
         if (keyStroke.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;
 
         if (keyStroke.getKeyType() == KeyType.Enter) return ACTION.SELECT;
+        if (keyStroke.getKeyType() == KeyType.Escape) return ACTION.ESC;
 
         return ACTION.NONE;
     }
+
 
     @Override
     public void drawPlayerCar(Position position, int width, int height) {
@@ -85,6 +87,7 @@ public class LanternaGUI implements GUI {
         TextGraphics textGraphics = getTextGraphics();
         textGraphics.setForegroundColor(TextColor.Factory.fromString(color));
         textGraphics.putString(position.getX(), position.getY(), text);
+
     }
 
     @Override

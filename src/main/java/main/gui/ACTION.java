@@ -1,4 +1,4 @@
-package main.Gui;
+package main.gui;
 
 public enum ACTION {
     UP,
@@ -11,6 +11,7 @@ public enum ACTION {
     THREE,
 
     SELECT,
+    ESC,
     NONE,
     QUIT
 }

@@ -1,13 +1,10 @@
 package main.controller.game.collidable;
 
 import main.Game;
-import main.State.MenuState;
 import main.config.GameConfig;
 import main.model.Position;
-import main.model.game.elements.collidable.Fuel;
 import main.model.game.elements.collidable.Obstacle;
 import main.model.game.road.Road;
-import main.model.menu.Menu;
 
 import java.util.Iterator;
 import java.util.List; 
@@ -37,7 +34,7 @@ public class ObstacleController extends CollidableController<Obstacle> {
     @Override
     protected Obstacle generateElement() {
         Random random = new Random();
-        int x = random.nextInt(getModel().getWidth() - 2) + 1;
+        int x = random.nextInt(getModel().getWidth() - 1 - GameConfig.CAR_WIDTH) + 1;
         int y = 0;
         return new Obstacle(x, y, GameConfig.CAR_WIDTH, GameConfig.CAR_HEIGHT);
     }
@@ -53,7 +50,7 @@ public class ObstacleController extends CollidableController<Obstacle> {
         obstacle.setPosition(position);
 
         if (obstacle.collides(getModel().getPlayerCar().getPosition(), getModel().getPlayerCar().getWidth(), getModel().getPlayerCar().getHeight())) {
-            game.setState(new MenuState(new Menu()));
+            getModel().getPlayerCar().setCollided(true);
         }
     }
 

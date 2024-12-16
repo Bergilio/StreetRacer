@@ -1,7 +1,8 @@
 package main.controller.game.collidable;
 
 import main.Game;
-import main.Gui.ACTION;
+import main.gui.ACTION;
+import main.config.GameConfig;
 import main.controller.game.GameController;
 import main.model.game.elements.collidable.Collidable;
 import main.model.game.elements.collidable.Fuel;
@@ -20,7 +21,7 @@ public abstract class CollidableController<T extends Collidable> extends GameCon
         super(road);
 
         this.last = 0;
-        this.speedDecider = 500;
+        this.speedDecider = GameConfig.SPEED_DECIDER;
     }
 
     @Override
@@ -28,8 +29,8 @@ public abstract class CollidableController<T extends Collidable> extends GameCon
         if (time - last > speedDecider) {
             processElements(game);
             last = time;
-            if (speedDecider > 100) {
-                speedDecider -= 20;
+            if (speedDecider > GameConfig.MAX_SPEED) {
+                speedDecider -= 40;
             }
 
         }

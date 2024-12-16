@@ -1,6 +1,7 @@
 package main.viewer.game;
 
-import main.Gui.GUI;
+import main.gui.GUI;
+import main.config.GameConfig;
 import main.model.Position;
 import main.model.game.elements.Element;
 import main.model.game.road.Road;
@@ -23,6 +24,7 @@ public class GameViewer extends Viewer<Road> {
         drawElement(gui, getModel().getPlayerCar(), new PlayerCarViewer());
 
         gui.drawText(new Position(0, 0), "FUEL = " + getModel().getPlayerCar().getFuel(), "#FF00FF");
+        gui.drawText(new Position(GameConfig.ROAD_WIDTH - 12, 0), "POINTS = " + getModel().getPlayerCar().getPoints(), "#FF00FF");
     }
 
     private <T extends Element> void drawElement(GUI gui, List<T> elements, ElementViewer<T> viewer) {

@@ -26,7 +26,7 @@ public class FuelCreator extends ElementCreator<Fuel> {
         List<Fuel> newElements = new ArrayList<>();
 
         for (int i = 0; i < GameConfig.NUMBER_OF_FUELS_PER_DIVISION; i++) {
-            int x = random.nextInt(this.roadWidth - 2) + 1;
+            int x = random.nextInt(this.roadWidth - 2 - GameConfig.FUEL_WIDTH) + 1;
             int y = positionReference;
             Fuel fuel = new Fuel(x, y, GameConfig.FUEL_WIDTH, GameConfig.FUEL_HEIGHT);
 

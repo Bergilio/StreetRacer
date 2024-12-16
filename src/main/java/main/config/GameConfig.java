@@ -9,8 +9,10 @@ public class GameConfig {
 
     public static final int PLAYER_START_X = ROAD_WIDTH / 2;
     public static final int PLAYER_START_Y = ROAD_HEIGHT - 10;
+
     public static final int PLAYER_START_FUEL = 20;
     public static final int PLAYER_START_POINTS = 0;
+    public static final int MAX_FUEL = 30;
 
     public static final int CAR_WIDTH = 5;
     public static final int CAR_HEIGHT = 5;
@@ -21,5 +23,10 @@ public class GameConfig {
 
     public static final int NUMBER_OF_OBSTACLES_PER_DIVISION = 1;
     public static final int NUMBER_OF_FUELS_PER_DIVISION = 1;
+
+    public static final int SPEED_DECIDER = 400;
+    public static final int MAX_SPEED = 80;
+
+    public static final int MAX_SCORES = 10;
 
 }

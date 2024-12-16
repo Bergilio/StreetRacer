@@ -13,20 +13,26 @@ import com.googlecode.lanterna.screen.Screen; // Caso esteja utilizando um Scree
 
 package main.model.game.elements;
 
-public class PlayerCar extends Element {
-    /*
-    private final int width = 10;
-    private final int length = 10;
-    */
-    private int fuelLevel;
+import main.config.GameConfig;
 
-    public PlayerCar(int x, int y, int fuel, int w, int h) {
+public class PlayerCar extends Element {
+    private int fuelLevel;
+    private int points;
+    private boolean collided;
+
+    public PlayerCar(int x, int y, int w, int h) {
         super(x, y, w, h);
-        this.fuelLevel = fuel;
+        this.fuelLevel = GameConfig.PLAYER_START_FUEL;
+        this.points = GameConfig.PLAYER_START_POINTS;
+        this.collided = false;
     }
 
     public void spendFuel() {
         this.fuelLevel--;
+    }
+
+    public void increasePoints() {
+        this.points++;
     }
 
     public int getFuel() {
@@ -37,31 +43,19 @@ public class PlayerCar extends Element {
         this.fuelLevel = fuel;
     }
 
-    /*
-    public int getWidth() {
-        return width;
+    public int getPoints() {
+        return points;
     }
 
-    public int getLength() {
-        return length;
+    public void setPoints(int points) {
+        this.points = points;
     }
 
-    BufferedImage sprite = ImageIO.read(new File("src/main/resources/Images/car1.png"));
-
-    for (int x = 0; x < sprite.getWidth(); x++){
-        for (int y = 0; y < sprite.getHeight(); y++){
-            int a = sprite.getRGB(x, y);
-            int alpha = (a >> 24) & 0xff;
-            int red = (a >> 16) & 255;
-            int green = (a >> 8) & 255;
-            int blue = a & 255;
-
-            if (alpha != 0) {
-                TextCharacter c = new TextCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue));
-                graphics.setCharacter(position.getX() + x, position.getY() + y, c);
-            }
-        }
+    public boolean getCollided() {
+        return collided;
     }
 
-    */
+    public void setCollided(boolean collided) {
+        this.collided = collided;
+    }
 }

@@ -39,7 +39,7 @@ public class FuelController extends CollidableController<Fuel> {
     @Override
     protected Fuel generateElement() {
         Random random = new Random();
-        int x = random.nextInt(getModel().getWidth() - 2) + 1;
+        int x = random.nextInt(getModel().getWidth() - 1 - GameConfig.FUEL_WIDTH) + 1;
         int y = 0;
         return new Fuel(x, y, GameConfig.FUEL_WIDTH, GameConfig.FUEL_HEIGHT);
     }
@@ -56,6 +56,10 @@ public class FuelController extends CollidableController<Fuel> {
     }
 
     private void increaseFuel() {
+        if (getModel().getPlayerCar().getFuel() + GameConfig.FUEL_ADITION >= GameConfig.MAX_FUEL) {
+            getModel().getPlayerCar().setFuel(GameConfig.MAX_FUEL);
+            return;
+        }
         getModel().getPlayerCar().setFuel(getModel().getPlayerCar().getFuel() + GameConfig.FUEL_ADITION);
     }
 

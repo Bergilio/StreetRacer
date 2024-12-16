@@ -1,7 +1,7 @@
 package main.viewer.game;
 
 
-import main.Gui.GUI;
+import main.gui.GUI;
 import main.model.game.elements.RoadLimit;
 
 public class LimitViewer implements ElementViewer<RoadLimit> {

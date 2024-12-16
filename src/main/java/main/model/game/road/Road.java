@@ -28,8 +28,7 @@ public class Road {
         this.height = height;
 
         this.playerCar = new PlayerCar(GameConfig.PLAYER_START_X, GameConfig.PLAYER_START_Y,
-                                       GameConfig.PLAYER_START_FUEL, GameConfig.CAR_WIDTH,
-                                       GameConfig.CAR_HEIGHT);
+                                       GameConfig.CAR_WIDTH, GameConfig.CAR_HEIGHT);
 
         this.obstacles = createObstacles();
         this.fuels = createFuels();
