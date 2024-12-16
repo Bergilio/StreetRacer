@@ -4,8 +4,7 @@ import main.model.menu.Menu;
 
 public class MenuViewer extends DefaultMenuViewer {
 
-    public MenuViewer(Menu menu) {
-        super(menu);
-        this.menuName = "Menu";
+    public MenuViewer(Menu model) {
+        super(model);
     }
 }

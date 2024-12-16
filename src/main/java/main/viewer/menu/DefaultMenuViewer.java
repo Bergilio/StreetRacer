@@ -7,7 +7,6 @@ import main.model.menu.DefaultMenu;
 import main.viewer.Viewer;
 
 public class DefaultMenuViewer extends Viewer<DefaultMenu> {
-    protected String menuName;
 
     public DefaultMenuViewer(DefaultMenu defaultMenu) {
         super(defaultMenu);
@@ -15,7 +14,7 @@ public class DefaultMenuViewer extends Viewer<DefaultMenu> {
 
     @Override
     protected void drawElement(GUI gui) {
-        gui.drawText(new Position(GameConfig.SCREEN_WIDTH / 2 - 5, GameConfig.SCREEN_HEIGHT - 45), this.menuName, "#FF00FF");
+        gui.drawText(new Position(GameConfig.SCREEN_WIDTH / 2 - 5, GameConfig.SCREEN_HEIGHT - 45), getModel().getMenuName(), "#FF00FF");
 
         for (int i = 0; i < getModel().getOptionsSize(); i++) {
             StringBuilder string = new StringBuilder();

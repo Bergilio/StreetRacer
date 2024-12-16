@@ -3,10 +3,12 @@ package main.model.menu;
 import java.util.List;
 
 public abstract class DefaultMenu {
+    protected final String menuName;
     protected final List<String> options;
     private int currentSelection;
 
-    public DefaultMenu(List<String> options, int currentSelection) {
+    public DefaultMenu(String menuName, List<String> options, int currentSelection) {
+        this.menuName = menuName;
         this.options = options;
         this.currentSelection = currentSelection;
     }
@@ -25,6 +27,10 @@ public abstract class DefaultMenu {
 
     public int getOptionsSize() {
         return this.options.size();
+    }
+
+    public String getMenuName() {
+        return menuName;
     }
 
 }

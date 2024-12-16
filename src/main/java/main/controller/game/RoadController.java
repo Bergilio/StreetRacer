@@ -2,6 +2,8 @@ package main.controller.game;
 
 import main.Game;
 import main.gui.ACTION;
+import main.model.menu.GameOver;
+import main.state.menu.GameOverState;
 import main.state.menu.MenuState;
 import main.state.menu.PauseState;
 import main.controller.game.collidable.FuelController;
@@ -32,7 +34,7 @@ public class RoadController extends GameController {
     public void update(Game game, ACTION action, long time) throws IOException {
         if (checkGameOver(action)) {
             this.scoreController.update(game, action, time);
-            game.setState(new MenuState(new Menu()));
+            game.setState(new GameOverState(new GameOver()));
         }
         else if (checkPause(action)) {
             game.setState(new PauseState(new Pause(), getModel()));

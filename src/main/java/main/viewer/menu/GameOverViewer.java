@@ -1,4 +1,10 @@
 package main.viewer.menu;
 
-public class GameOverViewer {
+import main.model.menu.GameOver;
+
+public class GameOverViewer extends DefaultMenuViewer {
+
+    public GameOverViewer(GameOver model) {
+        super(model);
+    }
 }

@@ -23,11 +23,13 @@ public abstract class DefaultMenuController extends Controller<DefaultMenu> {
                 else if (curSelect > 0) curSelect--;
                 getModel().setCurrentSelection(curSelect);
                 break;
+
             case DOWN:
                 if (curSelect == 2) curSelect = 0;
                 else if (curSelect < 2) curSelect++;
                 getModel().setCurrentSelection(curSelect);
                 break;
+
             case SELECT:
                 if (curSelect == 0) {
                     firstSelection(game);

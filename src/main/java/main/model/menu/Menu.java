@@ -5,6 +5,6 @@ import java.util.List;
 
 public class Menu extends DefaultMenu{
     public Menu() {
-        super(Arrays.asList("Start Game", "Top Scores", "Quit"), 0);
+        super("Menu", Arrays.asList("Start Game", "Top Scores", "Quit"), 0);
     }
 }
