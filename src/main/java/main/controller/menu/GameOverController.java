@@ -8,7 +8,7 @@ import main.model.menu.Menu;
 import main.state.game.GameState;
 import main.state.menu.MenuState;
 
-public class GameOverController extends DefaultMenuController {
+public class GameOverController extends DefaultMenuController<GameOver> {
 
     public GameOverController(GameOver model) {
         super(model);

@@ -10,7 +10,7 @@ import main.model.score.ScoreMenu;
 
 import java.io.IOException;
 
-public class MenuController extends DefaultMenuController {
+public class MenuController extends DefaultMenuController<Menu> {
 
     public MenuController(Menu model) {
         super(model);

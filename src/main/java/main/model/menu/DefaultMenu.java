@@ -5,7 +5,7 @@ import java.util.List;
 public abstract class DefaultMenu {
     protected final String menuName;
     protected final List<String> options;
-    private int currentSelection;
+    protected int currentSelection;
 
     public DefaultMenu(String menuName, List<String> options, int currentSelection) {
         this.menuName = menuName;

@@ -6,10 +6,10 @@ import main.model.Position;
 import main.model.menu.DefaultMenu;
 import main.viewer.Viewer;
 
-public class DefaultMenuViewer extends Viewer<DefaultMenu> {
+public class DefaultMenuViewer<T extends DefaultMenu> extends Viewer<T> {
 
-    public DefaultMenuViewer(DefaultMenu defaultMenu) {
-        super(defaultMenu);
+    public DefaultMenuViewer(T model) {
+        super(model);
     }
 
     @Override

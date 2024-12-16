@@ -37,7 +37,7 @@ public class RoadController extends GameController {
             game.setState(new GameOverState(new GameOver()));
         }
         else if (checkPause(action)) {
-            game.setState(new PauseState(new Pause(), getModel()));
+            game.setState(new PauseState(new Pause(getModel())));
         }
         else {
             this.playerCarController.update(game, action, time);

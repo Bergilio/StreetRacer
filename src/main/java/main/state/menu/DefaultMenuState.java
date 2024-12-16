@@ -5,16 +5,16 @@ import main.model.menu.DefaultMenu;
 import main.state.State;
 import main.viewer.Viewer;
 
-public abstract class DefaultMenuState extends State<DefaultMenu> {
+public abstract class DefaultMenuState<T extends DefaultMenu> extends State<T> {
 
-    public DefaultMenuState(DefaultMenu model) {
+    public DefaultMenuState(T model) {
         super(model);
     }
 
     @Override
-    protected abstract Viewer<DefaultMenu> getViewer();
+    protected abstract Viewer<T> getViewer();
 
     @Override
-    protected abstract Controller<DefaultMenu> getController();
+    protected abstract Controller<T> getController();
 
 }

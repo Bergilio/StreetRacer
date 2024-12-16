@@ -7,9 +7,9 @@ import main.model.menu.DefaultMenu;
 
 import java.io.IOException;
 
-public abstract class DefaultMenuController extends Controller<DefaultMenu> {
+public abstract class DefaultMenuController<T extends DefaultMenu> extends Controller<T> {
 
-    public DefaultMenuController(DefaultMenu model) {
+    public DefaultMenuController(T model) {
         super(model);
     }
 
