@@ -33,11 +33,13 @@ public abstract class ElementCreator<T extends Collidable> {
         return elements;
     }
 
+    protected boolean checkCollision(Element element, Position position, int w, int h) {
+        return element.collides(position, w, h);
+    }
 
     protected abstract boolean isPositionValid(Position position, int width, int height, List<T> collidables);
 
     protected abstract List<T> generateElementsForDivision(int positionReference);
 
-    protected abstract boolean checkCollision(Element element, Position position, int w, int h);
 
 }

@@ -54,9 +54,4 @@ public class ObstacleCreator extends ElementCreator<Obstacle> {
         }
         return true;
     }
-
-    @Override
-    protected boolean checkCollision(Element element, Position position, int w, int h) {
-        return element.collides(position, w, h);
-    }
 }

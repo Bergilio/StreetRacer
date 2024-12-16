@@ -14,7 +14,7 @@ public class DefaultMenuViewer<T extends DefaultMenu> extends Viewer<T> {
 
     @Override
     protected void drawElement(GUI gui) {
-        gui.drawText(new Position(GameConfig.SCREEN_WIDTH / 2 - 5, GameConfig.SCREEN_HEIGHT - 45), getModel().getMenuName(), "#FF00FF");
+        gui.drawText(new Position(GameConfig.MENU_START_X, GameConfig.MENU_START_Y), getModel().getMenuName(), "#FF00FF");
 
         for (int i = 0; i < getModel().getOptionsSize(); i++) {
             StringBuilder string = new StringBuilder();
@@ -28,7 +28,7 @@ public class DefaultMenuViewer<T extends DefaultMenu> extends Viewer<T> {
                 string.append(">");
             }
 
-            gui.drawText(new Position(GameConfig.SCREEN_WIDTH / 2 - 8, GameConfig.SCREEN_HEIGHT - 45 + i + 4), string.toString(), "#FF00FF");
+            gui.drawText(new Position(GameConfig.MENU_START_X, GameConfig.MENU_START_Y + i + 2), string.toString(), "#FF00FF");
         }
     }
 }

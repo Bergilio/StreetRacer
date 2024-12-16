@@ -14,7 +14,7 @@ public class ScoreMenuViewer extends Viewer<ScoreMenu> {
 
     @Override
     protected void drawElement(GUI gui) {
-        gui.drawText(new Position(2, GameConfig.SCREEN_HEIGHT - 45), "Top Scores", "#FF00FF");
+        gui.drawText(new Position(GameConfig.MENU_START_X, GameConfig.MENU_START_Y), "Top Scores", "#FF00FF");
 
         for (int i = 0; i < getModel().getListOfScores().size(); i++) {
             StringBuilder string = new StringBuilder();
@@ -23,13 +23,13 @@ public class ScoreMenuViewer extends Viewer<ScoreMenu> {
             string.append(" ");
             string.append(getModel().getListOfScores().get(i));
 
-            gui.drawText(new Position(2, GameConfig.SCREEN_HEIGHT - 45 + i + 4), string.toString(), "#FF00FF");
+            gui.drawText(new Position(GameConfig.MENU_START_X, GameConfig.MENU_START_Y + i + 3), string.toString(), "#FF00FF");
         }
 
-        gui.drawText(new Position(2, GameConfig.SCREEN_HEIGHT - 45 + getModel().getListOfScores().size() + 6),
+        gui.drawText(new Position(GameConfig.MENU_START_X, GameConfig.MENU_START_Y + getModel().getListOfScores().size() + 5),
                 "Press [ESC] to go back to the Menu", "#FF00FF");
 
-        gui.drawText(new Position(2, GameConfig.SCREEN_HEIGHT - 45 + getModel().getListOfScores().size() + 8),
+        gui.drawText(new Position(GameConfig.MENU_START_X, GameConfig.MENU_START_Y + getModel().getListOfScores().size() + 7),
                 "Press [Q] to reset the scores", "#FF00FF");
     }
 }

@@ -62,9 +62,4 @@ public class FuelCreator extends ElementCreator<Fuel> {
 
         return true;
     }
-
-    @Override
-    protected boolean checkCollision(Element element, Position position, int w, int h) {
-        return element.collides(position, w, h);
-    }
 }

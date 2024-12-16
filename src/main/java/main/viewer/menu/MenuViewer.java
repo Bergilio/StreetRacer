@@ -7,4 +7,5 @@ public class MenuViewer extends DefaultMenuViewer<Menu> {
     public MenuViewer(Menu model) {
         super(model);
     }
+
 }
