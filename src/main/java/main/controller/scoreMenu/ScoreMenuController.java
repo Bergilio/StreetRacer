@@ -9,6 +9,7 @@ import main.model.menu.Menu;
 import main.model.score.ScoreMenu;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

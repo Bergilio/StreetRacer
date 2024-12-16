@@ -6,6 +6,7 @@ import main.controller.Controller;
 import main.model.menu.DefaultMenu;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public abstract class DefaultMenuController<T extends DefaultMenu> extends Controller<T> {
 

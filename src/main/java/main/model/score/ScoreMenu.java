@@ -1,4 +1,3 @@
-
 package main.model.score;
 
 import java.io.*;
@@ -10,18 +9,22 @@ public class ScoreMenu {
 
     public ScoreMenu() throws IOException {
         this.listOfScores = new ArrayList<>();
+        File file = new File(System.getProperty("user.home"), "TraficRacerFiles/Scores.txt");
+        file.getParentFile().mkdirs();
 
-        BufferedReader reader = new BufferedReader(new FileReader("/home/pedro/LEIC/LDTS/project-t06g02/src/main/resources/Files/Scores.txt"));
-        String line = reader.readLine();
-
-        if (line != null) {
-            String[] parts = line.split(" ");
-            for (String part : parts) {
-                this.listOfScores.add(Integer.parseInt(part.trim()));
-            }
+        if (!file.exists()) {
+            file.createNewFile();
         }
 
-        reader.close();
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line = reader.readLine();
+            if (line != null) {
+                String[] parts = line.split(" ");
+                for (String part : parts) {
+                    this.listOfScores.add(Integer.parseInt(part.trim()));
+                }
+            }
+        }
     }
 
     public List<Integer> getListOfScores() {
@@ -34,14 +37,15 @@ public class ScoreMenu {
     }
 
     private void overwriteScoresFile() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/pedro/LEIC/LDTS/project-t06g02/src/main/resources/Files/Scores.txt", false));
+        File file = new File(System.getProperty("user.home"), "TraficRacerFiles/Scores.txt");
+        file.getParentFile().mkdirs();
 
-        for (Integer i : this.listOfScores) {
-            writer.write(i.toString());
-            writer.write(" ");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, false))) {
+            for (Integer i : this.listOfScores) {
+                writer.write(i.toString());
+                writer.write(" ");
+            }
         }
-
-        writer.close();
     }
 }
 

@@ -14,6 +14,7 @@ import main.model.game.road.Road;
 import main.model.menu.Pause;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class RoadController extends GameController {
     private final PlayerCarController playerCarController;

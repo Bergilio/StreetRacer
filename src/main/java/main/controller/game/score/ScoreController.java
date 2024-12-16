@@ -1,11 +1,13 @@
 package main.controller.game.score;
 
 import main.Game;
+import main.config.GameConfig;
 import main.gui.ACTION;
 import main.controller.game.GameController;
 import main.model.game.road.Road;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -17,11 +19,16 @@ public class ScoreController extends GameController {
 
     @Override
     public void update(Game game, ACTION action, long time) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/pedro/LEIC/LDTS/project-t06g02/src/main/resources/Files/Scores.txt", true));
+        File file = new File(System.getProperty("user.home"), GameConfig.SCORES_FILE);
+        file.getParentFile().mkdirs();
 
-        writer.write(String.valueOf(getModel().getPlayerCar().getPoints()));
-        writer.write(" ");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
 
-        writer.close();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+            writer.write(String.valueOf(getModel().getPlayerCar().getPoints()));
+            writer.write(" ");
+        }
     }
 }

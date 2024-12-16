@@ -1,6 +1,8 @@
 package main.controller;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+
 import main.Game;
 import main.gui.ACTION;
 

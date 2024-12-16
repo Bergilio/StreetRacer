@@ -36,4 +36,6 @@ public class GameConfig {
     public static final int MENU_START_Y = 4;
     public static final int MENU_START_X = 2;
 
+    public static final String SCORES_FILE = "TraficRacerFiles/Scores.txt";
+
 }

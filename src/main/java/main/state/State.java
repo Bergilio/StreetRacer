@@ -7,6 +7,7 @@ import main.controller.Controller;
 import main.viewer.Viewer;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 
 public abstract class State<T> {
