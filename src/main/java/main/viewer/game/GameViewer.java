@@ -19,6 +19,7 @@ public class GameViewer extends Viewer<Road> {
     @Override
     protected void drawElement(GUI gui) {
         drawElement(gui, getModel().getLimits(), new LimitViewer());
+        drawElement(gui, getModel().getDashLines(), new LimitViewer());
         drawElement(gui, getModel().getObstacles(), new ObstacleViewer());
         drawElement(gui, getModel().getFuels(), new FuelViewer());
         drawElement(gui, getModel().getPlayerCar(), new PlayerCarViewer());

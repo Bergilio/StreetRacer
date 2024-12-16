@@ -7,7 +7,6 @@ import main.config.GameConfig;
 import main.model.menu.Menu;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 
 public class Game {

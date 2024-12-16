@@ -40,7 +40,7 @@ public class LanternaGUI implements GUI {
         if (keyStroke == null) return ACTION.NONE;
 
         if (keyStroke.getKeyType() == KeyType.EOF) return ACTION.QUIT;
-        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return ACTION.QUIT;
+        if (keyStroke.getKeyType() == KeyType.Character && (keyStroke.getCharacter() == 'q' || keyStroke.getCharacter() == 'Q')) return ACTION.QUIT;
 
         if (keyStroke.getKeyType() == KeyType.ArrowUp) return ACTION.UP;
         if (keyStroke.getKeyType() == KeyType.ArrowDown) return ACTION.DOWN;
@@ -71,7 +71,9 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawLimit(Position position) { drawBackground(position.getX(), position.getY(), "#FFFFFF"); }
+    public void drawLimit(Position position) {
+        drawText(position, "|", "#FFFFFF");
+    }
 
     @Override
     public void drawBigElement(int x, int y, int w, int h, String color) {
@@ -95,7 +97,7 @@ public class LanternaGUI implements GUI {
         TextGraphics textGraphics = getTextGraphics();
         textGraphics.setForegroundColor(TextColor.Factory.fromString(color));
         textGraphics.setBackgroundColor(TextColor.Factory.fromString(color));
-        textGraphics.putString(x, y+1, " ");
+        textGraphics.putString(x, y, " ");
     }
 
     @Override
