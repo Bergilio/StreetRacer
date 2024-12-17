@@ -17,9 +17,9 @@ public class GameOverViewer extends DefaultMenuViewer<GameOver> {
 
         int baseY = GameConfig.MENU_START_Y + getModel().getReasonsSize() + 3;
 
-        gui.drawText(new Position(GameConfig.MENU_START_X, baseY), getModel().getReason(), "#FF00FF");
+        gui.drawText(new Position(GameConfig.MENU_START_X, baseY), getModel().getReason(), "#FFA500");
 
         gui.drawText(new Position(GameConfig.MENU_START_X, baseY + 1),
-                "Score: " + getModel().getScore(), "#FF00FF");
+                "Score: " + getModel().getScore(), "#FFA500");
     }
 }

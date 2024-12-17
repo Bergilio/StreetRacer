@@ -1,8 +1,8 @@
 package main.config;
 
 public class GameConfig {
-    public static final int SCREEN_WIDTH = 50;
-    public static final int SCREEN_HEIGHT = 50;
+    public static final int SCREEN_WIDTH = 40;
+    public static final int SCREEN_HEIGHT = 40;
 
     public static final int ROAD_WIDTH = SCREEN_WIDTH;
     public static final int ROAD_HEIGHT = SCREEN_HEIGHT;
@@ -25,7 +25,7 @@ public class GameConfig {
     public static final int NUMBER_OF_FUELS_PER_DIVISION = 1;
 
     public static final int SPEED_DECIDER = 400;
-    public static final int MAX_SPEED = 70;
+    public static final int MAX_SPEED = 100;
 
     public static final int MAX_SCORES = 10;
 

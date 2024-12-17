@@ -72,7 +72,7 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawPlayerCar(Position position, int width, int height) throws IOException {
-        BufferedImage sprite = ImageIO.read(new File("src/main/resources/Images/mainCar.png"));
+        BufferedImage sprite = ImageIO.read(new File("src/main/resources/Images/obstacleCar.png"));
 
         for (int x = 0; x < sprite.getWidth(); x++){
             for (int y = 0; y < sprite.getHeight(); y++){
@@ -93,7 +93,7 @@ public class LanternaGUI implements GUI {
     @Override
     public void drawObstacle(Position position, int width, int height) throws IOException {
 
-        BufferedImage sprite = ImageIO.read(new File("src/main/resources/Images/obstacleCar.png"));
+        BufferedImage sprite = ImageIO.read(new File("src/main/resources/Images/mainCar.png"));
 
 
 
