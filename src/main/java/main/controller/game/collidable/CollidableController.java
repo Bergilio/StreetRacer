@@ -16,21 +16,23 @@ import java.util.List;
 public abstract class CollidableController<T extends Collidable> extends GameController {
     private long last;
     private long speedDecider;
+    protected long maxSpeed;
 
     public CollidableController(Road road) {
         super(road);
 
         this.last = 0;
         this.speedDecider = GameConfig.SPEED_DECIDER;
+        this.maxSpeed = GameConfig.MAX_SPEED;
     }
 
     @Override
     public void update(Game game, ACTION action, long time) {
-        if (time - last > speedDecider) {
+        if (time - this.last > this.speedDecider) {
             processElements(game);
             last = time;
-            if (speedDecider > GameConfig.MAX_SPEED) {
-                speedDecider -= 40;
+            if (this.speedDecider > this.maxSpeed) {
+                this.speedDecider -= 40;
             }
 
         }
@@ -61,7 +63,7 @@ public abstract class CollidableController<T extends Collidable> extends GameCon
         }
     }
 
-    private boolean isPositionValid(T element, List<T> newElements) {
+    protected boolean isPositionValid(T element, List<T> newElements) {
         for (Obstacle obstacle : getModel().getObstacles()) {
             if (obstacle.collides(element.getPosition(), element.getWidth(), element.getHeight())) {
                 return false;

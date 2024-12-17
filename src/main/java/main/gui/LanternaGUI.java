@@ -1,6 +1,7 @@
 package main.gui;
 
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
@@ -11,6 +12,9 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import main.model.Position;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 public class LanternaGUI implements GUI {
@@ -53,8 +57,7 @@ public class LanternaGUI implements GUI {
 
         return ACTION.NONE;
     }
-
-
+    /*
     @Override
     public void drawPlayerCar(Position position, int width, int height) {
         drawBigElement(position.getX(), position.getY(), width, height, "#FFD700");
@@ -63,6 +66,51 @@ public class LanternaGUI implements GUI {
     @Override
     public void drawObstacle(Position position, int width, int height) {
         drawBigElement(position.getX(), position.getY(), width, height, "#0000FF");
+    }
+    */
+
+
+    @Override
+    public void drawPlayerCar(Position position, int width, int height) throws IOException {
+        BufferedImage sprite = ImageIO.read(new File("src/main/resources/Images/mainCar.png"));
+
+        for (int x = 0; x < sprite.getWidth(); x++){
+            for (int y = 0; y < sprite.getHeight(); y++){
+                int a = sprite.getRGB(x, y);
+                int alpha = (a >> 24) & 0xff;
+                int red = (a >> 16) & 255;
+                int green = (a >> 8) & 255;
+                int blue = a & 255;
+
+                if (alpha != 0) {
+                    TextCharacter c = new TextCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue));
+                    screen.setCharacter(position.getX() + x, position.getY() + y, c);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void drawObstacle(Position position, int width, int height) throws IOException {
+
+        BufferedImage sprite = ImageIO.read(new File("src/main/resources/Images/obstacleCar.png"));
+
+
+
+        for (int x = 0; x < sprite.getWidth(); x++){
+            for (int y = 0; y < sprite.getHeight(); y++){
+                int a = sprite.getRGB(x, y);
+                int alpha = (a >> 24) & 0xff;
+                int red = (a >> 16) & 255;
+                int green = (a >> 8) & 255;
+                int blue = a & 255;
+
+                if (alpha != 0) {
+                    TextCharacter c = new TextCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue));
+                    screen.setCharacter(position.getX() + x, position.getY() + y, c);
+                }
+            }
+        }
     }
 
     @Override

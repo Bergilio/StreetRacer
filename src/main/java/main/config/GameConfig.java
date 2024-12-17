@@ -25,7 +25,7 @@ public class GameConfig {
     public static final int NUMBER_OF_FUELS_PER_DIVISION = 1;
 
     public static final int SPEED_DECIDER = 400;
-    public static final int MAX_SPEED = 80;
+    public static final int MAX_SPEED = 70;
 
     public static final int MAX_SCORES = 10;
 

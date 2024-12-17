@@ -2,10 +2,10 @@ package main.controller.game;
 
 import main.Game;
 import main.config.GameConfig;
+import main.controller.game.collidable.LineController;
 import main.gui.ACTION;
 import main.model.menu.GameOver;
 import main.state.menu.GameOverState;
-import main.state.menu.MenuState;
 import main.state.menu.PauseState;
 import main.controller.game.collidable.FuelController;
 import main.controller.game.collidable.ObstacleController;
@@ -20,6 +20,7 @@ public class RoadController extends GameController {
     private final ObstacleController obstacleController;
     private final FuelController fuelController;
     private final ScoreController scoreController;
+    private final LineController lineController;
 
     public RoadController(Road road) {
         super(road);
@@ -28,6 +29,7 @@ public class RoadController extends GameController {
         this.obstacleController = new ObstacleController(road);
         this.fuelController = new FuelController(road);
         this.scoreController = new ScoreController(road);
+        this.lineController = new LineController(road);
     }
 
     @Override
@@ -45,6 +47,7 @@ public class RoadController extends GameController {
             this.playerCarController.update(game, action, time);
             this.obstacleController.update(game, action, time);
             this.fuelController.update(game, action, time);
+            this.lineController.update(game, action, time);
         }
 
     }

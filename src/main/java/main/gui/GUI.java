@@ -7,11 +7,11 @@ public interface GUI {
 
     ACTION getNextAction() throws IOException;
 
-    void drawPlayerCar(Position position, int width, int height);
+    void drawPlayerCar(Position position, int width, int height) throws IOException;
 
     void drawLimit(Position position);
 
-    void drawObstacle(Position position, int width, int height);
+    void drawObstacle(Position position, int width, int height) throws IOException;
 
     void drawFuel(Position position, int width, int height);
 

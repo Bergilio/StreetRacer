@@ -5,6 +5,7 @@ import main.model.Position;
 import main.model.game.elements.*;
 import main.model.game.elements.collidable.Fuel;
 import main.model.game.elements.collidable.Obstacle;
+import main.model.game.elements.collidable.RoadLimit;
 import main.model.game.road.creator.FuelCreator;
 import main.model.game.road.creator.ObstacleCreator;
 

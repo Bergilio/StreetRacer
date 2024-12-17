@@ -2,7 +2,7 @@ package main.viewer.game;
 
 
 import main.gui.GUI;
-import main.model.game.elements.RoadLimit;
+import main.model.game.elements.collidable.RoadLimit;
 
 public class LimitViewer implements ElementViewer<RoadLimit> {
     @Override
