@@ -124,48 +124,131 @@ By pressing the following keys you can:
     
 ### DESIGN
 
-> This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
-
-- **Problem in Context.** The description of the design context and the concrete problem that motivated the instantiation of the pattern. Someone else other than the original developer should be able to read and understand all the motivations for the decisions made. When refering to the implementation before the pattern was applied, don’t forget to [link to the relevant lines of code](https://help.github.com/en/articles/creating-a-permanent-link-to-a-code-snippet) in the appropriate version.
-- **The Pattern.** Identify the design pattern to be applied, why it was selected and how it is a good fit considering the existing design context and the problem at hand.
-- **Implementation.** Show how the pattern roles, operations and associations were mapped to the concrete design classes. Illustrate it with a UML class diagram, and refer to the corresponding source code with links to the relevant lines (these should be [relative links](https://help.github.com/en/articles/about-readmes#relative-links-and-image-paths-in-readme-files). When doing this, always point to the latest version of the code.
-- **Consequences.** Benefits and liabilities of the design after the pattern instantiation, eventually comparing these consequences with those of alternative solutions.
-
-**Example of one of such subsections**:
-
-------
-
-#### THE JUMP ACTION OF THE KANGAROOBOY SHOULD BEHAVE DIFFERENTLY DEPENDING ON ITS STATE
+### Architecture Design
 
 **Problem in Context**
 
-There was a lot of scattered conditional logic when deciding how the KangarooBoy should behave when jumping, as the jumps should be different depending on the items that came to his possession during the game (an helix will alow him to fly, driking a potion will allow him to jump double the height, etc.). This is a violation of the **Single Responsability Principle**. We could concentrate all the conditional logic in the same method to circumscribe the issue to that one method but the **Single Responsability Principle** would still be violated.
+The game logic, input handling and the rendering logic had to be separated to allow for better organizing of the responsibilities of different classes, to facilitate maintainability 
+and scalability. The design should also facilitate testing, allowing for the testing of different responsibilities independently.
+
 
 **The Pattern**
 
-We have applied the **State** pattern. This pattern allows you to represent different states with different subclasses. We can switch to a different state of the application by switching to another implementation (i.e., another subclass). This pattern allowed to address the identified problems because […].
+The Model-View-Controller (MVC) pattern was the clear choice to address the problem. The game logic, input handling and rendering logic are organized like this:
+
+  - **Model** - Handles the game logic (and necessary data) needed for the game;
+  - **Viewer** - Renders the game's graphical representation;
+  - **Controller** - Updates the model according to input.
 
 **Implementation**
 
-The following figure shows how the pattern’s roles were mapped to the application classes.
+Following the pattern, we divided the code base into four different parts:
+  - **Model** - Has the basic logic to the elements of the application, as well as the necessary data;
+  - **Viewer** - Draws the elements present in the Road object to the screen;
+  - **GUI** - Basically extends the functionality of the Viewer by abstracting the logic to draw to the screen using the lanterna library;
+  - **Controller** - Interprets the input in order to update the elements present in the Road object.
 
-![img](https://www.fe.up.pt/~arestivo/page/img/examples/lpoo/state.svg)
+The implementation of the pattern can be found in the following packages:
 
-These classes can be found in the following files:
+- [Model](src/main/java/trafficracer/model)
+- [Viewer](src/main/java/trafficracer/viewer)
+- [Controller](src/main/java/trafficracer/controller)
 
-- [Character](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/Character.java)
-- [JumpAbilityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/JumpAbilityState.java)
-- [DoubleJumpState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/DoubleJumpState.java)
-- [HelicopterState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/HelicopterState.java)
-- [IncreasedGravityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/IncreasedGravityState.java)
+**UML:**
+
+![MVCpattern.drawio.png](src/main/resources/UMLs/MVCpattern.drawio.png)
 
 **Consequences**
 
-The use of the State Pattern in the current design allows the following benefits:
+The use of the MVC Pattern in the current design allows the following benefits:
 
-- The several states that represent the character’s hability to jump become explicit in the code, instead of relying on a series of flags.
-- We don’t need to have a long set of conditional if or switch statements associated with the various states; instead, polimorphism is used to activate the right behavior.
-- There are now more classes and instances to manage, but still in a reasonable number.
+- **Maintainability**: The different components can be modified independently;
+- **Scalability**: Adding new features to the game can be done without changing unrelated parts of the code base;
+- **Testing**: Unit testing is easier to implement since different classes have almost unrelated responsibilities (the model in particular can be tested without the controller and viewer).
+
+On the other hand the pattern can increase complexity, mostly in first steps of building the application, as there s still little definition on how things are going to be implemented.
+
+
+
+### Application States
+
+**Problem in Context**
+
+The application has multiple states, like the game state, the menu state, the game over state, and more.
+We needed a way to handle the different states of the application, while allowing it to scale if new states were to be added.
+
+**The Pattern**
+
+The patter chosen to address the problem was the State Pattern. It allows the application to change to its different states easily, simplifying the way the changes are handled.
+
+**Implementation**
+
+The State Pattern was implemented as follows:
+  - **State** - This abstract class implements shared behaviour between the different states, like calling for the update from the controller, or the drawing from the viewer;
+  - **Concrete States** - This classes implement the specific behaviour of the application states;
+  - **Transition of States** - The transition between states is handled outside the state classes, mostly by the game class or the controllers.
+
+**UML:**
+
+![StatePattern.drawio.png](src/main/resources/UMLs/StatePattern.drawio.png)
+
+**Consequences**
+
+The implementation of this pattern drastically simplified the way application states change from one to another. The only downside can be attributed to the slight increase in complexity.
+
+
+
+### Continuous execution with the Game Loop
+
+**Problem in Context**
+
+A requirement for the functionality of any game is to process input, render frames, change states (according to input) and store the passage of time to allow control of the pace of the game
+in a consistent way.
+
+**The Pattern**
+
+The Game Loop Pattern is widely used in the design of several games as it ensures consistent looping over the games' functionalities (input processing, updating and rendering).
+It enforces the repeatedly cycling through the games' functionalities.
+
+**Implementation**
+
+The Game Loop was implemented within the Game class as follows:
+  - **Initialization**: The game starts in the main menu state using the MenuState class.
+  - **Loop Phases**: The start method repeatedly cycles through the loop phases, ensuring that updates and rendering happen.
+  - **Frame Rate Control**: The loop calculates the time taken to process a frame and adjusts the sleep time to maintain a consistent frame rate.
+
+**UML:**
+
+![GameLoopPattern.drawio.png](src/main/resources/UMLs/GameLoopPattern.drawio.png)
+
+**Consequences**
+
+The game runs consistently but it is important that the code inside the loop has good performance has the loop is going to be executed for a long time.
+
+
+### Code Reusability and Consistency with Template Method Pattern
+
+**Problem in Context**
+
+At first, managing the different types of collidables (and their controllers) showed to be a challenge as code duplication led to a lot of maintenance difficulties.
+Before applying the Template Method pattern, each collidable had its own controller class with duplicative code.
+
+**The Pattern**
+
+
+
+**Implementation**
+
+
+
+**UML:**
+
+
+
+**Consequences**
+
+
+
 
 #### KNOWN CODE SMELLS
 
@@ -179,8 +262,3 @@ The use of the State Pattern in the current design allows the following benefits
 ### SELF-EVALUATION
 
 > In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
-
-**Example**:
-
-- John Doe: 40%
-- Jane Doe: 60%
