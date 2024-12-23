@@ -1,26 +1,127 @@
-## LDTS_<T><G> - <PROJECT NAME>
+## LDTS_l06_g02 - Traffic Racer
 
-> Include here one or two paragraphs explaining the main idea of the project, followed by a sentence identifying who the authors are.
+This project is a remake of the Traffic Racer game, released in 2012.
 
-**Example**:
+In the game, the player controls a car speeding through traffic that has to avoid colliding with other cars, while collecting jerrycans
+so that the car never runs out of fuel. 
 
-In this exciting platform game you can help KangarooBoy save the world, by collecting all the coins throughout ten different levels in which you will […].
+The longer the player avoids running out of fuel or colliding with other cars, the higher the final score will be.  
 
-This project was developed by *John Doe* (*john.doe*@fe.up.pt) and *Jane Doe* (*jane.doe*@fe.up.pt) for LPOO 2018⁄19.
+This project was developed by:
+
+- **Pedro Salgado** (up202204914)
+- **Diana** ()
+- **Diogo** ()
+
+### GAME CONTROLS
+
+
+- **Menus**
+    - **Menu Navigation** - Up and Down arrow Keys;
+    - **Menu Selection** - Enter Key;
+    - **Exit from Score Menu** - Escape Key;
+    - **Clear the Score Menu** - 'Q' key.
+
+
+- **Game**
+    - **Move** -  Left and Right Arrow Keys;
+    - **Pause Game** - Escape Key.
+    - **Quit Game** - 'Q' key.
 
 ### IMPLEMENTED FEATURES
 
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
+- **Playable Character** - The playable character is a green car. Its movements are controlled using the left and right keys.
 
-**Examples**:
 
-- **Jumping** - The game character will jump when the space bar key is pressed.
-- **Getting hidden coins** - When the game character hits a platform from below (by jumping beneath it) it will smash that segment of the platform and will get any coins that may exist hidden there.
+- **Obstacle Car** - The obstacles that the player needs to avoid are red cars. The cars are to be going at a lower velocity
+forcing the player to move out of their way. They can collide with the player's car from all sides, ending the game.
 
-### PLANNED FEATURES
 
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
+- **Collectable Jerrycans** - The jerrycans are small red elements to be found in the road that can be caught by the player's car.
+Collecting these increases the player's car fuel by a constant of 5.
 
+
+- **Road** - The road where the game take place and all it's elements interact.
+
+
+- **Road Limits** - The road limits are the straight lines on the sides of the road that delimit the size of the road and 
+determines the extent of the player's car movement.
+
+
+- **Dashed Lines** - The dashed lines in the middle of the road delimit the size of the lanes. Their purpose lies in giving
+the sense of movement to the game, and they do not interact with the elements in the game.
+
+
+- **Fuel Level** - The fuel level is displayed in the top left corner of the screen. It stars at 20 and the maximum amount
+is 30. The fuel level consistently decreases by a constant of 1, and it increases by a constant of 5 if a jerrycan is collected.
+
+
+- **Score** - The score is displayed in the top right corner of the screen. It starts at 0 and it increases constantly. In the end
+of the game the score is stored so that it can be displayed in the score menu.
+
+
+- **Collision** - The game detects if the player's car collides with the other elements. Collision with another car leads 
+to the end of the game while collision with a jerrycan leads to the increase of the fuel level of the player's car.
+
+
+- **Score Saving** - After finishing a game, the score is saved to file that can be found in "~/TrafficRacerFiles/Scores.txt".
+The directory and file will be created if it does not exist. The file is read so that the scores can be display the scores in the score menu and only the 10 best are kept.
+
+
+- **Main Menu** - The game Main Menu is accessed at the beginning of the game. It can also be accessed through the Pause menu and Game Over menu.
+  It as the following options:
+    - **Play** - Starts the game;
+    - **Scores** - Accesses the scores menu;
+    - **Quit** - Exits the game.
+
+
+- **Scores Menu** - The Scores Menu can be accessed from the Main Menu. It displays the top ten scores form descending order, as well as the instructions to the available actions.
+By pressing the following keys you can:
+    - **Press Escape Key** - Go back to the main menu;
+    - **Press 'Q' Key** - Clears the scoreboard.
+
+
+- **Pause Menu** - Can be accessed pressing the escape key during the game. It as the following options:
+    - **Resume Game** - Resumes the game;
+    - **Go to Menu** - Goes back to the initial menu;
+    - **Quit** - Exits the game.
+
+
+- **Game Over Screen** - Is accessed when the player dies. 
+    In an orange color, it is displayed the reason as to why the game was finished. The reasons are:
+    - **Collided with another**;
+    - **Ran out of fuel**;
+    - **You quit the game**.
+  
+    The game over menu as the following options:
+
+    - **Restart** - Restarts the game;
+    - **Leaderboard** - Displays the top 5 best scores;
+    - **Exit** - Exits the game.
+
+### Screen Shots
+
+- ### **Game**:
+
+![Gameplay.gif](src/main/resources/Screenshots/Gameplay.gif)
+
+- ### **Start Menu**:
+
+![Menu.png](src/main/resources/Screenshots/Menu.png)
+
+- ### **Pause Menu**:
+
+![PauseMenu.png](src/main/resources/Screenshots/PauseMenu.png)
+
+- ### **GameOver Menu**:
+
+![GameOver.png](src/main/resources/Screenshots/GameOver.png)
+
+- ### **ScoresMenu**:
+
+![ScoresMenu.png](src/main/resources/Screenshots/ScoresMenu.png)
+
+    
 ### DESIGN
 
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
