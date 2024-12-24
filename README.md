@@ -323,6 +323,35 @@ Reduced the possibility of bugs and/or unexpected behaviour happening.
 
 
 
+### Element generation with the Factory Pattern
+
+**Problem in Context**
+
+The game requires the creation of various elements in the beginning of the game, some of them  having the need for random
+generation. The ones that need these approach are the Fuel and Obstacle lists. The logic is similar but there are still differences that would lead to code duplication.
+
+**The Pattern**
+
+To solve this problem, the Factory Pattern was used. The pattern allows the encapsulation of the element generation logic,
+but the exact approach is determined dynamically 
+
+**Implementation**
+
+The implementation of the factory pattern is done in this way:
+  - **Abstract Factory (ElementCreator)**: Contains the shared logic for generating elements, like the collision check or the determination of positions;
+  - **Concrete Factories (FuelCreator, ObstacleCreator)**: Contains the specific implementation of the abstract methods, like defining the constraints for position validation.
+
+The implementation of the pattern can be found in the following package: [Creator](src/main/java/trafficracer/model/game/road/creator)
+
+**UML:**
+
+![FactoryPattern.drawio.png](src/main/resources/UMLs/FactoryPattern.drawio.png)
+
+**Consequences**
+
+The classes become easier to maintain, it is easier to scale and add new elements creators.
+
+
 #### KNOWN CODE SMELLS
 
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation.
