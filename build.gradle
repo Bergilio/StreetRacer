@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'info.solidsoft.pitest' version '1.15.0'
 }
 
 group = 'com.diogo-ribeiro-05.hero'
@@ -9,6 +11,7 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -17,8 +20,21 @@ dependencies {
 
     testImplementation 'org.mockito:mockito-core:3.7.7'
     testImplementation 'net.jqwik:jqwik:1.5.1'
+    testImplementation 'org.pitest:pitest:1.9.11'
 }
 
 test {
     useJUnitPlatform()
+}
+
+application {
+    mainClass.set('trafficracer.Game')
+}
+
+
+pitest{
+    junit5PluginVersion = '1.2.0'
+    targetClasses = ['trafficracer.*']
+    targetTests = ['trafficracer.*Test']
+    jvmArgs = ['-Xmx2g']
 }

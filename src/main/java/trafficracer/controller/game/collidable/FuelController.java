@@ -61,6 +61,7 @@ public class FuelController extends CollidableController<Fuel> {
             return;
         }
         getModel().getPlayerCar().setFuel(getModel().getPlayerCar().getFuel() + GameConfig.FUEL_ADITION);
+        playSound("src/main/resources/sounds/Mario Coin Sound - Sound Effect (HD).wav");
     }
 
 

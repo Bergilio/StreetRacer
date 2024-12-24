@@ -1,10 +1,5 @@
 package trafficracer.model.game.road;
 
-import net.jqwik.api.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import trafficracer.config.GameConfig;
 import trafficracer.model.Position;
 import trafficracer.model.game.elements.PlayerCar;
 import trafficracer.model.game.elements.collidable.Fuel;
@@ -12,6 +7,11 @@ import trafficracer.model.game.elements.collidable.Obstacle;
 import trafficracer.model.game.elements.collidable.RoadLimit;
 import trafficracer.model.game.road.creator.FuelCreator;
 import trafficracer.model.game.road.creator.ObstacleCreator;
+import net.jqwik.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import trafficracer.config.GameConfig;
 
 import java.util.List;
 

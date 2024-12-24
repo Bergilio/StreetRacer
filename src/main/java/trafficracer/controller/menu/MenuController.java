@@ -17,12 +17,12 @@ public class MenuController extends DefaultMenuController<Menu> {
     }
 
     @Override
-    protected void firstSelection(Game game) {
+    public void firstSelection(Game game) {
         game.setState(new GameState(new Road(GameConfig.ROAD_WIDTH, GameConfig.ROAD_HEIGHT)));
     }
 
     @Override
-    protected void secondSelection(Game game) throws IOException {
+    public void secondSelection(Game game) throws IOException {
         game.setState(new ScoreMenuState(new ScoreMenu()));
     }
 }

@@ -1,0 +1,215 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > CollidableController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">trafficracer.controller.game.collidable</a>
+</div>
+
+<h1>Coverage Summary for Class: CollidableController (trafficracer.controller.game.collidable)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CollidableController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (1/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    12.9%
+  </span>
+  <span class="absValue">
+    (4/31)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package trafficracer.controller.game.collidable;
+&nbsp;
+&nbsp;import trafficracer.Game;
+&nbsp;import trafficracer.gui.ACTION;
+&nbsp;import trafficracer.config.GameConfig;
+&nbsp;import trafficracer.controller.game.GameController;
+&nbsp;import trafficracer.model.game.elements.collidable.Collidable;
+&nbsp;import trafficracer.model.game.elements.collidable.Fuel;
+&nbsp;import trafficracer.model.game.elements.collidable.Obstacle;
+&nbsp;import trafficracer.model.game.road.Road;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.Iterator;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public abstract class CollidableController&lt;T extends Collidable&gt; extends GameController {
+&nbsp;    private long last;
+&nbsp;    private long speedDecider;
+&nbsp;    protected long maxSpeed;
+&nbsp;
+&nbsp;    public CollidableController(Road road) {
+<b class="fc">&nbsp;        super(road);</b>
+&nbsp;
+<b class="fc">&nbsp;        this.last = 0;</b>
+<b class="fc">&nbsp;        this.speedDecider = GameConfig.SPEED_DECIDER;</b>
+<b class="fc">&nbsp;        this.maxSpeed = GameConfig.MAX_SPEED;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void update(Game game, ACTION action, long time) {
+<b class="nc">&nbsp;        if (time - this.last &gt; this.speedDecider) {</b>
+<b class="nc">&nbsp;            processElements(game);</b>
+<b class="nc">&nbsp;            last = time;</b>
+<b class="nc">&nbsp;            if (this.speedDecider &gt; this.maxSpeed) {</b>
+<b class="nc">&nbsp;                this.speedDecider -= 40;</b>
+&nbsp;            }
+&nbsp;
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void processElements(Game game) {
+<b class="nc">&nbsp;        Iterator&lt;T&gt; iterator = getElementsIterator();</b>
+<b class="nc">&nbsp;        List&lt;T&gt; newElements = new ArrayList&lt;&gt;();</b>
+&nbsp;
+<b class="nc">&nbsp;        while (iterator.hasNext()) {</b>
+<b class="nc">&nbsp;            T element = iterator.next();</b>
+<b class="nc">&nbsp;            updateElement(game, element);</b>
+&nbsp;
+<b class="nc">&nbsp;            if (shouldRemoveElement(element)) {</b>
+<b class="nc">&nbsp;                iterator.remove();</b>
+<b class="nc">&nbsp;                newElements.add(generateValidElement(newElements));</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        addElements(newElements);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private T generateValidElement(List&lt;T&gt; newElements) {
+&nbsp;        while (true) {
+<b class="nc">&nbsp;            T newElement = generateElement();</b>
+<b class="nc">&nbsp;            if (isPositionValid(newElement, newElements)) {</b>
+<b class="nc">&nbsp;                return newElement;</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    protected boolean isPositionValid(T element, List&lt;T&gt; newElements) {
+<b class="nc">&nbsp;        for (Obstacle obstacle : getModel().getObstacles()) {</b>
+<b class="nc">&nbsp;            if (obstacle.collides(element.getPosition(), element.getWidth(), element.getHeight())) {</b>
+<b class="nc">&nbsp;                return false;</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        for (Fuel fuel : getModel().getFuels()) {</b>
+<b class="nc">&nbsp;            if (fuel.collides(element.getPosition(), element.getWidth(), element.getHeight())) {</b>
+<b class="nc">&nbsp;                return false;</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        for (T newElement : newElements) {</b>
+<b class="nc">&nbsp;            if (newElement.collides(element.getPosition(), element.getWidth(), element.getHeight())) {</b>
+<b class="nc">&nbsp;                return false;</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return true;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    protected abstract Iterator&lt;T&gt; getElementsIterator();
+&nbsp;
+&nbsp;    protected abstract void updateElement(Game game, T element);
+&nbsp;
+&nbsp;    protected abstract boolean shouldRemoveElement(T element);
+&nbsp;
+&nbsp;    protected abstract T generateElement();
+&nbsp;
+&nbsp;    protected abstract void addElements(List&lt;T&gt; elements);
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-24 05:21</div>
+</div>
+</body>
+</html>

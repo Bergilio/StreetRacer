@@ -1,9 +1,9 @@
 package trafficracer.model.game.element;
 
+import trafficracer.model.game.elements.PlayerCar;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import org.junit.jupiter.api.Test;
-import trafficracer.model.game.elements.PlayerCar;
 
 import static org.junit.jupiter.api.Assertions.*;
 

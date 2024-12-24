@@ -1,0 +1,161 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ElementCreator</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">trafficracer.model.game.road.creator</a>
+</div>
+
+<h1>Coverage Summary for Class: ElementCreator (trafficracer.model.game.road.creator)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ElementCreator</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package trafficracer.model.game.road.creator;
+&nbsp;
+&nbsp;import trafficracer.config.GameConfig;
+&nbsp;import trafficracer.model.Position;
+&nbsp;import trafficracer.model.game.elements.Element;
+&nbsp;import trafficracer.model.game.elements.PlayerCar;
+&nbsp;import trafficracer.model.game.elements.collidable.Collidable;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public abstract class ElementCreator&lt;T extends Collidable&gt; {
+&nbsp;    protected final int roadWidth;
+&nbsp;    protected final int roadHeight;
+&nbsp;    protected final PlayerCar playerCar;
+&nbsp;
+<b class="fc">&nbsp;    public ElementCreator(int roadWidth, int roadHeight, PlayerCar playerCar) {</b>
+<b class="fc">&nbsp;        this.roadWidth = roadWidth;</b>
+<b class="fc">&nbsp;        this.roadHeight = roadHeight;</b>
+<b class="fc">&nbsp;        this.playerCar = playerCar;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;T&gt; createElements() {
+<b class="fc">&nbsp;        List&lt;T&gt; elements = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        int divisionOfRoad = this.roadHeight / (GameConfig.CAR_HEIGHT * 2);</b>
+<b class="fc">&nbsp;        int positionReference = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;        for (int i = 0; i &lt; divisionOfRoad; i++) {</b>
+<b class="fc">&nbsp;            elements.addAll(generateElementsForDivision(positionReference));</b>
+<b class="fc">&nbsp;            positionReference += GameConfig.CAR_HEIGHT * 2;</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return elements;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    protected boolean checkCollision(Element element, Position position, int w, int h) {
+<b class="fc">&nbsp;        return element.collides(position, w, h);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    protected abstract boolean isPositionValid(Position position, int width, int height, List&lt;T&gt; collidables);
+&nbsp;
+&nbsp;    protected abstract List&lt;T&gt; generateElementsForDivision(int positionReference);
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-24 05:21</div>
+</div>
+</body>
+</html>

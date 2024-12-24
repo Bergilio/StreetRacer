@@ -1,0 +1,183 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > FuelController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">trafficracer.controller.game.collidable</a>
+</div>
+
+<h1>Coverage Summary for Class: FuelController (trafficracer.controller.game.collidable)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FuelController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    12.5%
+  </span>
+  <span class="absValue">
+    (1/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    5.6%
+  </span>
+  <span class="absValue">
+    (1/18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package trafficracer.controller.game.collidable;
+&nbsp;
+&nbsp;import trafficracer.Game;
+&nbsp;import trafficracer.config.GameConfig;
+&nbsp;import trafficracer.model.Position;
+&nbsp;import trafficracer.model.game.elements.collidable.Fuel;
+&nbsp;import trafficracer.model.game.road.Road;
+&nbsp;
+&nbsp;import java.util.Iterator;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Random;
+&nbsp;
+&nbsp;public class FuelController extends CollidableController&lt;Fuel&gt; {
+&nbsp;
+&nbsp;    public FuelController(Road road) {
+<b class="fc">&nbsp;        super(road);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected Iterator&lt;Fuel&gt; getElementsIterator() {
+<b class="nc">&nbsp;        return getModel().getFuels().iterator();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void updateElement(Game game, Fuel fuel) {
+<b class="nc">&nbsp;        moveFuel(fuel, fuel.getPosition().getDown());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected boolean shouldRemoveElement(Fuel fuel) {
+<b class="nc">&nbsp;        return fuel.getPosition().getY() &gt;= GameConfig.ROAD_HEIGHT ||</b>
+<b class="nc">&nbsp;        fuel.collides(getModel().getPlayerCar().getPosition(), getModel().getPlayerCar().getWidth(), getModel().getPlayerCar().getHeight());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected Fuel generateElement() {
+<b class="nc">&nbsp;        Random random = new Random();</b>
+<b class="nc">&nbsp;        int x = random.nextInt(getModel().getWidth() - 1 - GameConfig.FUEL_WIDTH) + 1;</b>
+<b class="nc">&nbsp;        int y = 0;</b>
+<b class="nc">&nbsp;        return new Fuel(x, y, GameConfig.FUEL_WIDTH, GameConfig.FUEL_HEIGHT);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void addElements(List&lt;Fuel&gt; fuels) {
+<b class="nc">&nbsp;        List&lt;Fuel&gt; newFuels = getModel().getFuels();</b>
+<b class="nc">&nbsp;        newFuels.addAll(fuels);</b>
+<b class="nc">&nbsp;        getModel().setFuels(newFuels);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void moveFuel(Fuel fuel, Position position) {
+<b class="nc">&nbsp;        fuel.setPosition(position);</b>
+&nbsp;
+<b class="nc">&nbsp;        if (fuel.collides(getModel().getPlayerCar().getPosition(), getModel().getPlayerCar().getWidth(), getModel().getPlayerCar().getHeight())) {</b>
+<b class="nc">&nbsp;            increaseFuel();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private void increaseFuel() {
+<b class="nc">&nbsp;        if (getModel().getPlayerCar().getFuel() + GameConfig.FUEL_ADITION &gt;= GameConfig.MAX_FUEL) {</b>
+<b class="nc">&nbsp;            getModel().getPlayerCar().setFuel(GameConfig.MAX_FUEL);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="nc">&nbsp;        getModel().getPlayerCar().setFuel(getModel().getPlayerCar().getFuel() + GameConfig.FUEL_ADITION);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-24 05:21</div>
+</div>
+</body>
+</html>

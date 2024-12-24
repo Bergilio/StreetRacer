@@ -1,8 +1,8 @@
 package trafficracer.model.menu;
 
+import trafficracer.model.game.road.Road;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import trafficracer.model.game.road.Road;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

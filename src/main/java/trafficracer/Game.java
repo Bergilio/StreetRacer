@@ -9,17 +9,17 @@ import trafficracer.model.menu.Menu;
 import java.io.IOException;
 
 
-public class Game {
+public class Game extends Sound {
     private static Game instance;
     private final LanternaGUI gui;
     private State state;
 
-    private Game() throws IOException {
+    public Game() throws IOException {
         this.gui = new LanternaGUI(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
         this.state = new MenuState(new Menu());
     }
 
-    public static Game getInstance() throws IOException {
+    private static Game getInstance() throws IOException {
         if (instance == null) {
             synchronized (Game.class) {
                 if (instance == null) {
@@ -39,6 +39,7 @@ public class Game {
     }
 
     private void start() throws IOException {
+        playSound_loop("src/main/resources/sounds/Love_Is_A_Long_Road.wav");
 
         int FPS = 60;
         int frameTime = 1000/ FPS;

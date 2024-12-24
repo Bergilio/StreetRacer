@@ -12,12 +12,12 @@ public class PauseController extends DefaultMenuController<Pause> {
     }
 
     @Override
-    protected void firstSelection(Game game) {
+    public void firstSelection(Game game) {
         game.setState(new GameState( getModel().getRoad()));
     }
 
     @Override
-    protected void secondSelection(Game game) {
+    public void secondSelection(Game game) {
         game.setState(new MenuState(new Menu()));
     }
 

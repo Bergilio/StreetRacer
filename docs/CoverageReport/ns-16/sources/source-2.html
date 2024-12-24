@@ -1,0 +1,129 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > GameOverViewer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">trafficracer.viewer.menu</a>
+</div>
+
+<h1>Coverage Summary for Class: GameOverViewer (trafficracer.viewer.menu)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameOverViewer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    16.7%
+  </span>
+  <span class="absValue">
+    (1/6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package trafficracer.viewer.menu;
+&nbsp;
+&nbsp;import trafficracer.config.GameConfig;
+&nbsp;import trafficracer.gui.GUI;
+&nbsp;import trafficracer.model.Position;
+&nbsp;import trafficracer.model.menu.GameOver;
+&nbsp;
+&nbsp;public class GameOverViewer extends DefaultMenuViewer&lt;GameOver&gt; {
+&nbsp;
+&nbsp;    public GameOverViewer(GameOver model) {
+<b class="fc">&nbsp;        super(model);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void drawElement(GUI gui) {
+<b class="nc">&nbsp;        super.drawElement(gui);</b>
+&nbsp;
+<b class="nc">&nbsp;        int baseY = GameConfig.MENU_START_Y + getModel().getReasonsSize() + 3;</b>
+&nbsp;
+<b class="nc">&nbsp;        gui.drawText(new Position(GameConfig.MENU_START_X, baseY), getModel().getReason(), &quot;#FFA500&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        gui.drawText(new Position(GameConfig.MENU_START_X, baseY + 1),</b>
+<b class="nc">&nbsp;                &quot;Score: &quot; + getModel().getScore(), &quot;#FFA500&quot;);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-24 05:21</div>
+</div>
+</body>
+</html>

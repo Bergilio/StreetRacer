@@ -1,10 +1,10 @@
 package trafficracer.model.game.element;
 
+import trafficracer.model.Position;
+import trafficracer.model.game.elements.Element;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import org.junit.jupiter.api.Test;
-import trafficracer.model.Position;
-import trafficracer.model.game.elements.Element;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -15,12 +15,12 @@ public class GameOverController extends DefaultMenuController<GameOver> {
     }
 
     @Override
-    protected void firstSelection(Game game) {
+    public void firstSelection(Game game) {
         game.setState(new GameState(new Road(GameConfig.ROAD_WIDTH, GameConfig.ROAD_HEIGHT)));
     }
 
     @Override
-    protected void secondSelection(Game game) {
+    public void secondSelection(Game game) {
         game.setState(new MenuState(new Menu()));
     }
 

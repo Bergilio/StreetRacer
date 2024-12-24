@@ -18,7 +18,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class LanternaGUI implements GUI {
-    private final Screen screen;
+    public Screen screen;
 
     public LanternaGUI(int width, int height) throws IOException {
         TerminalSize terminalSize = new TerminalSize(width, height);
