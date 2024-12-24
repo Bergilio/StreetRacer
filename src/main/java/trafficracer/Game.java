@@ -10,6 +10,7 @@ import java.io.IOException;
 
 
 public class Game {
+    private static Game instance;
     private final LanternaGUI gui;
     private State state;
 
@@ -18,8 +19,19 @@ public class Game {
         this.state = new MenuState(new Menu());
     }
 
+    public static Game getInstance() throws IOException {
+        if (instance == null) {
+            synchronized (Game.class) {
+                if (instance == null) {
+                    instance = new Game();
+                }
+            }
+        }
+        return instance;
+    }
+
     public static void main(String[] args) throws IOException {
-        new Game().start();
+        Game.getInstance().start();
     }
 
     public void setState(State state) {

@@ -10,8 +10,8 @@ The longer the player avoids running out of fuel or colliding with other cars, t
 This project was developed by:
 
 - **Pedro Salgado** (up202204914)
-- **Diana** ()
-- **Diogo** ()
+- **Daniela Azevedo** (up202303896)
+- **Diogo Ribeiro** (202303899)
 
 ### GAME CONTROLS
 
@@ -24,7 +24,7 @@ This project was developed by:
 
 
 - **Game**
-    - **Move** -  Left and Right Arrow Keys;
+    - **Move** - Left and Right Arrow Keys;
     - **Pause Game** - Escape Key.
     - **Quit Game** - 'Q' key.
 
@@ -188,6 +188,8 @@ The State Pattern was implemented as follows:
   - **Concrete States** - This classes implement the specific behaviour of the application states;
   - **Transition of States** - The transition between states is handled outside the state classes, mostly by the game class or the controllers.
 
+The implementation of the pattern can be found in the following package: [State](src/main/java/trafficracer/state)
+
 **UML:**
 
 ![StatePattern.drawio.png](src/main/resources/UMLs/StatePattern.drawio.png)
@@ -217,6 +219,8 @@ The Game Loop was implemented within the Game class as follows:
   - **Loop Phases**: The start method repeatedly cycles through the loop phases, ensuring that updates and rendering happen.
   - **Frame Rate Control**: The loop calculates the time taken to process a frame and adjusts the sleep time to maintain a consistent frame rate.
 
+The implementation of the pattern can be found in the following file: [Game](src/main/java/trafficracer/Game.java)
+
 **UML:**
 
 ![GameLoopPattern.drawio.png](src/main/resources/UMLs/GameLoopPattern.drawio.png)
@@ -235,18 +239,89 @@ Before applying the Template Method pattern, each collidable had its own control
 
 **The Pattern**
 
-
+The Template Method pattern was the choice to address the problem. It allowed to implement a workflow in the abstract class
+and delegate specific logic to the subclasses.
 
 **Implementation**
 
+The pattern was implemented in the following way:
+  - **Abstract Class**: CollidableController defines the basic logic to update the different collidable elements.
+      - Iterates through the list of elements;
+      - Updates the element position;
+      - Checks if the element should be removed;
+      - Adds new elements as needed.
+  - **Concrete Classes**: The subclasses implement the concrete logic for the steps taken in the abstract class.
 
+The implementation of the pattern can be found in the following package: [Collidable Controllers](src/main/java/trafficracer/controller/game/collidable)
 
 **UML:**
 
-
+![TemplateMethodPattern.drawio.png](src/main/resources/UMLs/TemplateMethodPattern.drawio.png)
 
 **Consequences**
 
+This pattern solved the problem of code duplication since a big part is implemented in the abstract class and allows for easier extensibility, as it facilitates the addition of new elements.
+
+
+### Continuous execution with the Game Loop
+
+**Problem in Context**
+
+A requirement for the functionality of any game is to process input, render frames, change states (according to input) and store the passage of time to allow control of the pace of the game
+in a consistent way.
+
+**The Pattern**
+
+The Game Loop Pattern is widely used in the design of several games as it ensures consistent looping over the games' functionalities (input processing, updating and rendering).
+It enforces the repeatedly cycling through the games' functionalities.
+
+**Implementation**
+
+The Game Loop was implemented within the Game class as follows:
+- **Initialization**: The game starts in the main menu state using the MenuState class.
+- **Loop Phases**: The start method repeatedly cycles through the loop phases, ensuring that updates and rendering happen.
+- **Frame Rate Control**: The loop calculates the time taken to process a frame and adjusts the sleep time to maintain a consistent frame rate.
+
+The implementation of the pattern can be found in the following file: [Game](src/main/java/trafficracer/Game.java)
+
+**UML:**
+
+![GameLoopPattern.drawio.png](src/main/resources/UMLs/GameLoopPattern.drawio.png)
+
+**Consequences**
+
+The game runs consistently but it is important that the code inside the loop has good performance has the loop is going to be executed for a long time.
+
+
+### Single instance of an object with Singleton
+
+**Problem in Context**
+
+The game class is the central point of coordination of the application. It manages the game loop, the GUI  and the current state
+so it is important to enforce that it can only exist a single instance of the Game class.
+
+**The Pattern**
+
+To address this problem, the Singleton Pattern was chosen, since the pattern only allows for one instance of a certain clas to be instantiated.
+It is particular appropriate to use this pattern when a single point of control is necessary, and it achieves this by restricting the instantiation
+to a single object, as well as providing a global access point to the instance.
+
+**Implementation**
+
+The implementation of the Game class with the singleton pattern goes like this:
+  - **Private Constructor** - it can't be instantiated from outside the class;
+  - **Static Instance** - it saves the single instance of the class;
+  - **Global Access** - Provides global access to the instance with the getInstance() method.
+
+The implementation of the pattern can be found in the following file: 
+
+**UML:**
+
+![SingletonPattern.drawio.png](src/main/resources/UMLs/SingletonPattern.drawio.png) [Game](src/main/java/trafficracer/Game.java)
+
+**Consequences**
+
+Reduced the possibility of bugs and/or unexpected behaviour happening.
 
 
 
