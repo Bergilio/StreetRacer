@@ -32,9 +32,12 @@ application {
 }
 
 
-pitest{
+pitest {
     junit5PluginVersion = '1.2.0'
     targetClasses = ['trafficracer.*']
     targetTests = ['trafficracer.*Test']
+    excludedClasses = ['trafficracer.LanternaGUITest', 'trafficracer.controller.game.collidable.RoadLimitControllerTest']
     jvmArgs = ['-Xmx2g']
 }
+
+

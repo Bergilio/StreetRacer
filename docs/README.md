@@ -120,6 +120,11 @@ This project was developed by:
 ![ScoresMenu.png](Screenshots/ScoresMenu.png)
 
 
+### UML
+
+![UML.png](UMLs/UML.png)
+
+
 ### DESIGN
 
 ### Architecture Design
