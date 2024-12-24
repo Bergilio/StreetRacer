@@ -338,5 +338,4 @@ The classes become easier to maintain, it is easier to scale and add new element
 
 ![CoverageReport.png](Screenshots/CoverageReport.png)
 
-- Link to mutation testing report.
 
